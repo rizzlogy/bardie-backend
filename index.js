@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const routes = require('./routes');
-
+const Booru = require('booru')
 // Pour activer la doc Swagger
 
 //const swaggerJSDoc = require('swagger-jsdoc');
@@ -23,6 +23,25 @@ app.get('/eval', async (req, res) => {
 		res.send(require('util').format(evaled))
 	}
 })
+
+
+async function asyncCall() {
+  let posts = await Booru.search('dan', ['yuri'], { limit: 350, random: false })
+  d = posts
+  d.forEach(ggwp =>{
+  ld = { url: `${ggwp.file_url}` }
+  resu.push(ld)
+  })
+  }
+
+  app.get('/yuri', (req, res) => {
+  resu = []
+  asyncCall()
+  random =  resu[Math.floor(Math.random() * resu.length)]
+  res.json({url: "https://external-content.duckduckgo.com/iu/?u=" + random.url})
+})
+
+
 
 /*
 app.use('/', swaggerUi.serve);
