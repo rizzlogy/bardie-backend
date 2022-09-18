@@ -1,0 +1,28 @@
+{
+  "name": "express-to-vercel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-openapi": "^12.0.1",
+    "firebase": "^9.9.0",
+    "meilisearch": "^0.27.0",
+    "nodemailer": "^6.7.8",
+    "nodemon": "^2.0.19",
+    "stripe": "^10.2.0",
+    "swagger-jsdoc": "5.0.1",
+    "swagger-ui-express": "^4.5.0",
+    "uid": "^2.0.0"
+  }
+}
