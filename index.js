@@ -1,5 +1,6 @@
 const express = require('express');
 const body = require("body-parser");
+let { realistic } = require("./lib/stablediff");
 const app = express();
 const PORT = 8022 || 4500 || 3000;
 
@@ -26,6 +27,47 @@ app.get('/eval', async (req, res) => {
 		res.send(require('util').format(evaled))
 	}
 })
+
+app.get("/stablediff", async (req, res) => {
+  let prompts = req.query.prompt;
+  if (!prompts)
+    return res.status(424).json({
+      status: 424,
+      creator: "RizzyFuzz",
+      msg: "No Prompt Provided",
+    });
+  try {
+    let { secondSpeed:second,
+	 model,
+	 prompt, 
+	 negative_prompt, 
+	 height,
+	 width, 
+	 resultImage 
+	} = await realistic(
+       "absolutereality_v181.safetensors [3d9d4d2b]",
+        prompts
+    );
+    res.json({ result: {
+	    speed,
+	    model,
+	    prompt,
+	    negative_prompt,
+	    height,
+	    width,
+	    resultImage	    
+    },
+	    status: 200, creator: "RizzyFuzz" 
+    });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      status: 500,
+      creator: "RizzyFuzz",
+      msg: e.message,
+    });
+  }
+});
 
 app.get('/', function(req, res) {
     res.send('Welcome to Node JS V1');
