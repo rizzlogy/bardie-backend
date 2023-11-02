@@ -15,7 +15,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/api/onstage", async (req, res) => {
-  let prompts = req.query.question;
+  let question = req.query.q;
   if (!question)
     return res.status(424).json({
       status: 424,
