@@ -30,14 +30,27 @@ app.get('/eval', async (req, res) => {
 })
 
 app.get("/bard", async (req, res) => {
+  let prompts = req.query.prompt;
+  if (!prompts)
+    return res.status(424).json({
+      status: 424,
+      creator: "RizzyFuzz",
+      msg: "No Prompt Provided",
+    });
   const bard = new Bard();
   try {
     await bard.configure(1, "cgi0zjh5k1ckIk7VU6CZ9PaXwmZOXYz1mdI6Jg7zSuBk6QTCVHWEVsXbZGmowJHmQ4Epiw.");
 
-    const response = await bard.question('apa itu furry fandom');
-    res.json(response)
+    const response = await bard.question(prompts);
+    res.json({ result: response, status: 200, creator: "RizzyFuzz" 
+    });
   } catch (error) {
     console.log(error);
+  res.status(500).json({
+      status: 500,
+      creator: "RizzyFuzz",
+      msg: "Internal Server Error!",
+    });
   }
 })
 
