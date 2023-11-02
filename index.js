@@ -14,19 +14,19 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/bard", async (req, res) => {
-  let prompts = req.query.prompt;
-  if (!prompts)
+app.get("/api/onstage", async (req, res) => {
+  let prompts = req.query.question;
+  if (!question)
     return res.status(424).json({
       status: 424,
       creator: "RizzyFuzz",
-      msg: "No Prompt Provided",
+      msg: "No Question Provided",
     });
   const bard = new Bard();
   try {
     await bard.configure(1, "cgi0zjh5k1ckIk7VU6CZ9PaXwmZOXYz1mdI6Jg7zSuBk6QTCVHWEVsXbZGmowJHmQ4Epiw.");
 
-    const response = await bard.question(decodeURIComponent(prompts));
+    const response = await bard.question(decodeURIComponent(question));
     res.json({ result: response, status: 200, creator: "RizzyFuzz" 
     });
   } catch (error) {
