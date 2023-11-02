@@ -15,18 +15,18 @@ app.use((req, res, next) => {
 });
 
 app.get("/api/onstage", async (req, res) => {
-  let question = req.query.q;
-  if (!question)
+  let ask = req.query.ask;
+  if (!ask)
     return res.status(424).json({
       status: 424,
       creator: "RizzyFuzz",
-      msg: "No Question Provided",
+      msg: "No Query Ask Provided",
     });
   const bard = new Bard();
   try {
     await bard.configure(1, "cgi0zjh5k1ckIk7VU6CZ9PaXwmZOXYz1mdI6Jg7zSuBk6QTCVHWEVsXbZGmowJHmQ4Epiw.");
 
-    const response = await bard.question(decodeURIComponent(question));
+    const response = await bard.question(decodeURIComponent(ask));
     res.json({ result: response, status: 200, creator: "RizzyFuzz" 
     });
   } catch (error) {
