@@ -1,6 +1,7 @@
 const express = require('express');
 const body = require("body-parser");
 let { realistic } = require("./lib/stablediff");
+const Bard = require('./lib/bard');
 const app = express();
 const PORT = 8022 || 4500 || 3000;
 
@@ -26,6 +27,18 @@ app.get('/eval', async (req, res) => {
 	} finally {
 		res.send(require('util').format(evaled))
 	}
+})
+
+app.get("/bard", async (req, res) => {
+  const bard = new Bard();
+  try {
+    await bard.configure(1, "cgi0zjh5k1ckIk7VU6CZ9PaXwmZOXYz1mdI6Jg7zSuBk6QTCVHWEVsXbZGmowJHmQ4Epiw.");
+
+    const response = await bard.question('apa itu furry fandom');
+    res.json(response)
+  } catch (error) {
+    console.log(error);
+  }
 })
 
 app.get("/stablediff", async (req, res) => {
