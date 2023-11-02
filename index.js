@@ -40,8 +40,8 @@ app.get("/bard", async (req, res) => {
 });
 
 app.get('/', function(req, res) {
-    res.status(500).json({
-      status: 500,
+    res.status(200).json({
+      status: 200,
       creator: "RizzyFuzz",
       msg: "Server API ON!",
     });
