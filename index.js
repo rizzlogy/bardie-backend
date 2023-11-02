@@ -14,13 +14,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/api/onstage", async (req, res) => {
+app.get("/api/onstage", async (req, res) => {
   let ask = req.query.ask;
   if (!ask)
-    return res.status(424).json({
-      status: 424,
+    return res.status(400).json({
+      status: 400,
       creator: "RizzyFuzz",
-      msg: "No Query Ask Provided",
+      msg: "Bad Request: No Query Ask Provided",
     });
   const bard = new Bard();
   try {
