@@ -1,5 +1,5 @@
 {
-  "name": "express-to-vercel",
+  "name": "bard-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,8 +14,6 @@
     "axios": "^0.27.2",
     "body-parser": "^1.20.0",
     "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "performance-now": "*",
-    "ws": "*"
+    "express": "^4.18.1"
   }
 }
