@@ -40,7 +40,11 @@ app.get("/bard", async (req, res) => {
 });
 
 app.get('/', function(req, res) {
-    res.send('Welcome to Bard AI API!');
+    res.status(500).json({
+      status: 500,
+      creator: "RizzyFuzz",
+      msg: "Server API ON!",
+    });
 });
 
 app.listen(PORT, () => {
