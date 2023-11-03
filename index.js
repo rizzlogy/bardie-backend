@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 8022;
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.disable("x-powered-by");
 app.use((req, res, next) => {
