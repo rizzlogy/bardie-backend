@@ -1,7 +1,7 @@
 const express = require("express");
 const Bard = require("./lib/bard");
 const app = express();
-const PORT = process.env.PORT || 8022 || 8888;
+const PORT = process.env.PORT || 8022 || 8888 || 1923;
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
@@ -11,6 +11,25 @@ app.disable("x-powered-by");
 app.use((req, res, next) => {
   res.setHeader("x-powered-by", "RizzyFuzz Backend");
   next();
+});
+
+app.use((req, res, next) => {
+  const REVERSE_PROXY = eval(true);
+  const ALLOW = ["bard.rizzy.eu.org"];
+  if (REVERSE_PROXY && !ALLOW.includes(req.get("host")))
+    return res
+      .status(403)
+      .send(`<center><h1>Sorry, Access Denied</h1></center>`);
+  next();
+});
+
+app.use(function (err, req, res, next) {
+  console.error(err.stack);
+  res.status(500).json({
+      content: "Something broke!",
+      status: 500,
+      creator: "RizzyFuzz",
+    });
 });
 
 app.post("/api/onstage", async (req, res) => {
