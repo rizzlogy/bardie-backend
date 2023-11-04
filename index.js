@@ -1,7 +1,7 @@
 const express = require('express');
 const Bard = require('./lib/bard');
 const app = express();
-const PORT = process.env.PORT || 8022;
+const PORT = process.env.PORT || 8022 || 8888;
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
