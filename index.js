@@ -26,10 +26,10 @@ app.use((req, res, next) => {
 app.use(function (err, req, res, next) {
   console.error(err.stack);
   res.status(500).json({
-      content: "Something broke!",
-      status: 500,
-      creator: "RizzyFuzz",
-    });
+    content: "Something broke!",
+    status: 500,
+    creator: "RizzyFuzz",
+  });
 });
 
 app.post("/api/onstage", async (req, res) => {
