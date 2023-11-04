@@ -10,5 +10,17 @@
         "src": "/(.*)",
         "dest": "index.js"
       }
-  ]
+  ],
+  {
+  "functions": {
+    "index.js": {
+      "memory": 1024,
+      "maxDuration": 30
+    },
+    "lib/*.js": {
+      "memory": 1024,
+      "maxDuration": 30
+    }
+  }
+}
 }
