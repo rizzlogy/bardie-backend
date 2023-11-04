@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require('cors')
+const cors = require("cors");
 const logger = require("morgan");
 const chalk = require("chalk");
 const Bard = require("./lib/bard");
