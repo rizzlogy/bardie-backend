@@ -1,1 +1,1 @@
-# bing api
+# bard api
