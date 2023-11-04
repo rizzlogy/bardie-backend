@@ -1,8 +1,12 @@
 const express = require("express");
+const cors = require('cors')
+const logger = require("morgan");
+const chalk = require("chalk");
 const Bard = require("./lib/bard");
 const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
 
+app.use(logger("dev"));
 app.set("json spaces", 2);
 app.set("trust proxy", true);
 app.use(express.urlencoded({ extended: true }));
@@ -12,6 +16,43 @@ app.use((req, res, next) => {
   res.setHeader("x-powered-by", "RizzyFuzz Backend");
   next();
 });
+
+function formatBytes(bytes, decimals = 2) {
+  if (bytes === 0) return "0 Bytes";
+
+  const k = 1024;
+  const dm = decimals < 0 ? 0 : decimals;
+  const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+}
+
+function status(code) {
+  if (code > 400 && code < 499) return chalk.yellow(code);
+  if (code > 500 && code < 599) return chalk.red(code);
+  if (code > 299 && code < 399) return chalk.cyan(code);
+  if (code > 199) return chalk.green(code);
+  return chalk.yellow(code);
+}
+
+app.use(
+  logger(function (tokens, req, res) {
+    return [
+      req.ip,
+      tokens.method(req, res),
+      tokens.url(req, res),
+      status(tokens.status(req, res)),
+      tokens["response-time"](req, res) + " ms",
+      formatBytes(
+        isNaN(tokens.res(req, res, "content-length"))
+          ? 0
+          : tokens.res(req, res, "content-length"),
+      ),
+    ].join(" | ");
+  }),
+);
 
 app.use((req, res, next) => {
   const REVERSE_PROXY = eval(true);
