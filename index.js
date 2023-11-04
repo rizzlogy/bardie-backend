@@ -1,5 +1,5 @@
-const express = require('express');
-const Bard = require('./lib/bard');
+const express = require("express");
+const Bard = require("./lib/bard");
 const app = express();
 const PORT = process.env.PORT || 8022 || 8888;
 
@@ -25,7 +25,10 @@ app.get("/api/onstage", async (req, res) => {
 
   const bard = new Bard();
   try {
-    await bard.configure(1, "cgi0zjh5k1ckIk7VU6CZ9PaXwmZOXYz1mdI6Jg7zSuBk6QTCVHWEVsXbZGmowJHmQ4Epiw.");
+    await bard.configure(
+      1,
+      "cgi0zjh5k1ckIk7VU6CZ9PaXwmZOXYz1mdI6Jg7zSuBk6QTCVHWEVsXbZGmowJHmQ4Epiw.",
+    );
     const response = await bard.question(decodeURIComponent(ask));
     res.json({ result: response, status: 200, creator: "RizzyFuzz" });
   } catch (error) {
@@ -38,7 +41,7 @@ app.get("/api/onstage", async (req, res) => {
   }
 });
 
-app.get('/', function(req, res) {
+app.get("/", function (req, res) {
   res.status(200).json({
     status: 200,
     creator: "RizzyFuzz",
