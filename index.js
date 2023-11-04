@@ -38,8 +38,7 @@ function status(code) {
 
 app.use(
   logger(function (tokens, req, res) {
-    return [
-      "[ ✨ ]",
+    return "[ ✨ ] " + [
       req.ip,
       tokens.method(req, res),
       tokens.url(req, res),
@@ -50,7 +49,7 @@ app.use(
           ? 0
           : tokens.res(req, res, "content-length"),
       ),
-    ].join(" ••• ");
+    ].join(" | ");
   }),
 );
 
