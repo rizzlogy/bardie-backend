@@ -17,8 +17,13 @@ app.use((req, res, next) => {
   let timedOut = false;
   const timeout = setTimeout(() => {
     timedOut = true;
-    res.status(500).json({ content: "Server not responding, try again", status: 500,
-      creator: "RizzyFuzz", });
+    res
+      .status(500)
+      .json({
+        content: "Server not responding, try again",
+        status: 500,
+        creator: "RizzyFuzz",
+      });
   }, 10000);
 
   res.on("finish", () => {
@@ -66,13 +71,11 @@ app.post("/api/onstage", async (req, res) => {
 
 app.all("/api/onstage", (req, res) => {
   if (req.method !== "POST") {
-    res
-      .status(405)
-      .json({
-        content: "Method not allowed",
-        status: 405,
-        creator: "RizzyFuzz",
-      });
+    res.status(405).json({
+      content: "Method not allowed",
+      status: 405,
+      creator: "RizzyFuzz",
+    });
   }
 });
 
