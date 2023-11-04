@@ -39,7 +39,7 @@ function status(code) {
 app.use(
   logger(function (tokens, req, res) {
     return [
-      "[ INFO BARD SERVER ] ",
+      "[ ✨ ]",
       req.ip,
       tokens.method(req, res),
       tokens.url(req, res),
