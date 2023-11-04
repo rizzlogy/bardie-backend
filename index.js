@@ -6,7 +6,7 @@ const Bard = require("./lib/bard");
 const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
 
-app.use(logger("dev"));
+//app.use(logger("dev"));
 app.set("json spaces", 2);
 app.set("trust proxy", true);
 app.use(express.urlencoded({ extended: true }));
