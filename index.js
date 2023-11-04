@@ -31,7 +31,11 @@ app.post("/api/onstage", async (req, res) => {
     );
     const response = await bard.question(ask);
     if (!response.status)
-      res.json({ content: response.content, status: 500, creator: "RizzyFuzz" });
+      res.json({
+        content: response.content,
+        status: 500,
+        creator: "RizzyFuzz",
+      });
     res.json({ content: response.content, status: 200, creator: "RizzyFuzz" });
   } catch (error) {
     console.error(error);
@@ -45,8 +49,13 @@ app.post("/api/onstage", async (req, res) => {
 
 app.all("/api/onstage", (req, res) => {
   if (req.method !== "POST") {
-    res.status(405).json({ content: "Method not allowed", status: 405,
-      creator: "RizzyFuzz", });
+    res
+      .status(405)
+      .json({
+        content: "Method not allowed",
+        status: 405,
+        creator: "RizzyFuzz",
+      });
   }
 });
 
