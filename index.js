@@ -13,8 +13,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/api/onstage", async (req, res) => {
-  let ask = req.query.ask;
+app.post("/api/onstage", async (req, res) => {
+  const { ask } = req.body;
   if (!ask) {
     return res.status(400).json({
       status: 400,
@@ -29,8 +29,9 @@ app.get("/api/onstage", async (req, res) => {
       1,
       "cgi0zjh5k1ckIk7VU6CZ9PaXwmZOXYz1mdI6Jg7zSuBk6QTCVHWEVsXbZGmowJHmQ4Epiw.",
     );
-    const response = await bard.question(decodeURIComponent(ask));
-    res.json({ result: response, status: 200, creator: "RizzyFuzz" });
+    const response = await bard.question(ask);
+    if(!response.status) res.json({ result: response.content, status: 500, creator: "RizzyFuzz" });
+    res.json({ result: response.content, status: 200, creator: "RizzyFuzz" });
   } catch (error) {
     console.error(error);
     res.status(500).json({
