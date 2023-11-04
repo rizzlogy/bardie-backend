@@ -30,7 +30,8 @@ app.post("/api/onstage", async (req, res) => {
       "cgi0zjh5k1ckIk7VU6CZ9PaXwmZOXYz1mdI6Jg7zSuBk6QTCVHWEVsXbZGmowJHmQ4Epiw.",
     );
     const response = await bard.question(ask);
-    if(!response.status) res.json({ result: response.content, status: 500, creator: "RizzyFuzz" });
+    if (!response.status)
+      res.json({ result: response.content, status: 500, creator: "RizzyFuzz" });
     res.json({ result: response.content, status: 200, creator: "RizzyFuzz" });
   } catch (error) {
     console.error(error);
