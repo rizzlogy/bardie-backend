@@ -38,18 +38,21 @@ function status(code) {
 
 app.use(
   logger(function (tokens, req, res) {
-    return "[ ✨ ] " + [
-      req.ip,
-      tokens.method(req, res),
-      tokens.url(req, res),
-      status(tokens.status(req, res)),
-      tokens["response-time"](req, res) + " ms",
-      formatBytes(
-        isNaN(tokens.res(req, res, "content-length"))
-          ? 0
-          : tokens.res(req, res, "content-length"),
-      ),
-    ].join(" | ");
+    return (
+      "[ ✨ ] " +
+      [
+        req.ip,
+        tokens.method(req, res),
+        tokens.url(req, res),
+        status(tokens.status(req, res)),
+        tokens["response-time"](req, res) + " ms",
+        formatBytes(
+          isNaN(tokens.res(req, res, "content-length"))
+            ? 0
+            : tokens.res(req, res, "content-length"),
+        ),
+      ].join(" | ")
+    );
   }),
 );
 
