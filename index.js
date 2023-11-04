@@ -13,13 +13,30 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  let timedOut = false;
+  const timeout = setTimeout(() => {
+    timedOut = true;
+    res.status(500).json({ content: "Server not responding, try again", status: 500,
+      creator: "RizzyFuzz", });
+  }, 10000);
+
+  res.on("finish", () => {
+    if (!timedOut) {
+      clearTimeout(timeout);
+    }
+  });
+
+  next();
+});
+
 app.post("/api/onstage", async (req, res) => {
   const { ask } = req.body;
   if (!ask) {
     return res.status(400).json({
+      content: "Bad Request: No Query Ask Provided",
       status: 400,
       creator: "RizzyFuzz",
-      msg: "Bad Request: No Query Ask Provided",
     });
   }
 
