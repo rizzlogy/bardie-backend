@@ -10,129 +10,125 @@
       "email": "support@rizzy.eu.org"
     }
   },
-  "components": {
-    "schemas": {
-      "Question": {
-        "type": "object",
-        "properties": {
-          "ask": {
-            "type": "string",
-            "description": "The question to be submitted to BardAI."
-          }
+  "definitions": {
+    "Question": {
+      "type": "object",
+      "properties": {
+        "ask": {
+          "type": "string",
+          "description": "The question to be submitted to BardAI."
         },
-        "example": {
-          "ask": "What is www.wonsacloud.com"
-        }
-      },
-      "Answer": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "string",
-            "description": "The response content from the question request."
-          },
-          "status": {
-            "type": "integer",
-            "description": "HTTP status code.",
-            "example": 200
-          },
-          "creator": {
-            "type": "string",
-            "description": "Response creator."
-          }
+        "example": "What is www.wonsacloud.com"
+      }
+    },
+    "Answer": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "The response content from the question request."
+        },
+        "status": {
+          "type": "integer",
+          "description": "HTTP status code.",
+          "example": 200
+        },
+        "creator": {
+          "type": "string",
+          "description": "Response creator."
         },
         "example": {
           "content": "www.wonsacloud.com is the website of Wonsa Cloud, a cloud computing service provider company in Indonesia...",
           "status": 200,
           "creator": "RizzyFuzz"
         }
-      },
-      "Error400": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "string",
-            "description": "Error message content."
-          },
-          "status": {
-            "type": "integer",
-            "description": "HTTP status code.",
-            "example": 400
-          },
-          "creator": {
-            "type": "string",
-            "description": "Response creator."
-          }
+      }
+    },
+    "Error400": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "Error message content."
+        },
+        "status": {
+          "type": "integer",
+          "description": "HTTP status code.",
+          "example": 400
+        },
+        "creator": {
+          "type": "string",
+          "description": "Response creator."
         },
         "example": {
           "content": "Bad Request: No Query Ask Provided",
           "status": 400,
           "creator": "RizzyFuzz"
         }
-      },
-      "Error500": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "string",
-            "description": "Error message content."
-          },
-          "status": {
-            "type": "integer",
-            "description": "HTTP status code.",
-            "example": 500
-          },
-          "creator": {
-            "type": "string",
-            "description": "Response creator."
-          }
+      }
+    },
+    "Error500": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "Error message content."
+        },
+        "status": {
+          "type": "integer",
+          "description": "HTTP status code.",
+          "example": 500
+        },
+        "creator": {
+          "type": "string",
+          "description": "Response creator."
         },
         "example": {
           "content": "Internal Server Error",
           "status": 500,
           "creator": "RizzyFuzz"
         }
-      },
-      "StatusResponse": {
-        "type": "object",
-        "properties": {
-          "stats": {
-            "type": "object",
-            "properties": {
-              "ping": {
-                "type": "string",
-                "description": "Ping time to the server."
-              },
-              "cpu": {
-                "type": "string",
-                "description": "Server's CPU information."
-              },
-              "platform": {
-                "type": "string",
-                "description": "Server's operating system platform."
-              },
-              "arch": {
-                "type": "string",
-                "description": "Server's architecture."
-              },
-              "memoryRAM": {
-                "type": "string",
-                "description": "Server's RAM usage information."
-              },
-              "runtime": {
-                "type": "string",
-                "description": "Server's runtime duration."
-              }
+      }
+    },
+    "StatusResponse": {
+      "type": "object",
+      "properties": {
+        "stats": {
+          "type": "object",
+          "properties": {
+            "ping": {
+              "type": "string",
+              "description": "Ping time to the server."
+            },
+            "cpu": {
+              "type": "string",
+              "description": "Server's CPU information."
+            },
+            "platform": {
+              "type": "string",
+              "description": "Server's operating system platform."
+            },
+            "arch": {
+              "type": "string",
+              "description": "Server's architecture."
+            },
+            "memoryRAM": {
+              "type": "string",
+              "description": "Server's RAM usage information."
+            },
+            "runtime": {
+              "type": "string",
+              "description": "Server's runtime duration."
             }
-          },
-          "status": {
-            "type": "string",
-            "description": "Current server status."
-          },
-          "creator": {
-            "type": "string",
-            "description": "Response creator."
           }
+        },
+        "status": {
+          "type": "string",
+          "description": "Current server status."
+        },
+        "creator": {
+          "type": "string",
+          "description": "Response creator."
         },
         "example": {
           "stats": {
@@ -154,45 +150,33 @@
       "post": {
         "summary": "Submit a question to BardAI",
         "description": "Endpoint for submitting a question to BardAI.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Question"
-              }
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Question"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Answer"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Answer"
             }
           },
           "400": {
             "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error400"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Error400"
             }
           },
           "500": {
             "description": "Internal Server Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error500"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/Error500"
             }
           }
         }
@@ -204,12 +188,8 @@
         "responses": {
           "200": {
             "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/StatusResponse"
-                }
-              }
+            "schema": {
+              "$ref": "#/definitions/StatusResponse"
             }
           }
         }
