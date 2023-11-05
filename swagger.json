@@ -10,7 +10,6 @@
       "post": {
         "summary": "Menanyakan pertanyaan kepada Bard",
         "description": "Endpoint untuk mengajukan pertanyaan kepada Bard.",
-        "consumes": ["application/json"],
         "parameters": [
           {
             "name": "request",
@@ -25,7 +24,7 @@
                 }
               },
               "example": {
-                "ask": "siapa itu wonsa"
+                "ask": "hi"
               }
             }
           }
@@ -53,58 +52,6 @@
               "example": {
                 "content": "www.wonsacloud.com adalah situs web dari Wonsa Cloud, sebuah perusahaan penyedia layanan cloud computing di Indonesia...",
                 "status": 200,
-                "creator": "RizzyFuzz"
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "content": {
-                  "type": "string",
-                  "description": "Isi pesan kesalahan."
-                },
-                "status": {
-                  "type": "integer",
-                  "description": "Kode status HTTP.",
-                  "example": 400
-                },
-                "creator": {
-                  "type": "string",
-                  "description": "Pembuat respons."
-                }
-              },
-              "example": {
-                "content": "Bad Request: No Query Ask Provided",
-                "status": 400,
-                "creator": "RizzyFuzz"
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "content": {
-                  "type": "string",
-                  "description": "Isi pesan kesalahan."
-                },
-                "status": {
-                  "type": "integer",
-                  "description": "Kode status HTTP.",
-                  "example": 500
-                },
-                "creator": {
-                  "type": "string",
-                  "description": "Pembuat respons."
-                }
-              },
-              "example": {
-                "content": "Internal Server Error",
-                "status": 500,
                 "creator": "RizzyFuzz"
               }
             }
