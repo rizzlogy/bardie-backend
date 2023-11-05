@@ -17,8 +17,7 @@
         "ask": {
           "type": "string",
           "description": "The question to be submitted to BardAI."
-        },
-        "example": "What is www.wonsacloud.com"
+        }
       }
     },
     "Answer": {
@@ -30,63 +29,11 @@
         },
         "status": {
           "type": "integer",
-          "description": "HTTP status code.",
-          "example": 200
+          "description": "HTTP status code."
         },
         "creator": {
           "type": "string",
           "description": "Response creator."
-        },
-        "example": {
-          "content": "www.wonsacloud.com is the website of Wonsa Cloud, a cloud computing service provider company in Indonesia...",
-          "status": 200,
-          "creator": "RizzyFuzz"
-        }
-      }
-    },
-    "Error400": {
-      "type": "object",
-      "properties": {
-        "content": {
-          "type": "string",
-          "description": "Error message content."
-        },
-        "status": {
-          "type": "integer",
-          "description": "HTTP status code.",
-          "example": 400
-        },
-        "creator": {
-          "type": "string",
-          "description": "Response creator."
-        },
-        "example": {
-          "content": "Bad Request: No Query Ask Provided",
-          "status": 400,
-          "creator": "RizzyFuzz"
-        }
-      }
-    },
-    "Error500": {
-      "type": "object",
-      "properties": {
-        "content": {
-          "type": "string",
-          "description": "Error message content."
-        },
-        "status": {
-          "type": "integer",
-          "description": "HTTP status code.",
-          "example": 500
-        },
-        "creator": {
-          "type": "string",
-          "description": "Response creator."
-        },
-        "example": {
-          "content": "Internal Server Error",
-          "status": 500,
-          "creator": "RizzyFuzz"
         }
       }
     },
@@ -129,18 +76,6 @@
         "creator": {
           "type": "string",
           "description": "Response creator."
-        },
-        "example": {
-          "stats": {
-            "ping": "0.0073 s",
-            "cpu": "Intel(R) Xeon(R) Processor @ 2.50GHz (2x)",
-            "platform": "Linux",
-            "arch": "x64",
-            "memoryRAM": "206.42 MB / 1.16 GB",
-            "runtime": "5 minutes, 23 seconds"
-          },
-          "status": "Always On 🟢",
-          "creator": "RizzyFuzz"
         }
       }
     }
@@ -170,13 +105,13 @@
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/Error400"
+              "$ref": "#/definitions/Answer"
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/Error500"
+              "$ref": "#/definitions/Answer"
             }
           }
         }
@@ -196,4 +131,4 @@
       }
     }
   }
-}
+          }
