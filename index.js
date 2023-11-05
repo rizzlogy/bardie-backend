@@ -45,18 +45,18 @@ function runtime(seconds) {
 }
 
 async function checkBandwidth() {
-    ind = 0;
-    out = 0;
+  ind = 0;
+  out = 0;
 
-    for (let i of await require("node-os-utils").netstat.stats()) {
-      ind += parseInt(i.inputBytes);
-      out += parseInt(i.outputBytes);
-    }
+  for (let i of await require("node-os-utils").netstat.stats()) {
+    ind += parseInt(i.inputBytes);
+    out += parseInt(i.outputBytes);
+  }
 
-    return {
-      download: await format(ind),
-      upload: await format(out),
-    };
+  return {
+    download: await format(ind),
+    upload: await format(out),
+  };
 }
 
 function status(code) {
