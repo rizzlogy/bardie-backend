@@ -7,7 +7,6 @@ const os = require("os");
 const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
 const speed = require("performance-now");
-const nou = require("node-os-utils");
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
@@ -42,21 +41,6 @@ function runtime(seconds) {
   var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
   var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
   return dDisplay + hDisplay + mDisplay + sDisplay;
-}
-
-async function checkBandwidth() {
-  ind = 0;
-  out = 0;
-
-  for (let i of await require("node-os-utils").netstat.stats()) {
-    ind += parseInt(i.inputBytes);
-    out += parseInt(i.outputBytes);
-  }
-
-  return {
-    download: await formatBytes(ind),
-    upload: await formatBytes(out),
-  };
 }
 
 function status(code) {
@@ -166,14 +150,22 @@ app.all("/status", async (req, res, next) => {
 
   if (req.query.format && req.query.format == "json")
     return res.send({
-      ping: new Date() - ping,
-      core: core.length,
-      status: "on",
+      ping: latensi.toFixed(4),
+      cpu: `${os.cpus()[0].model}${
+    os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""
+      }`,
+      platfrom: os.platform(),
+      arch: os.arch(),
+      memoryRAM: `${formatBytes(os.totalmem() - os.freemem())} / ${formatBytes(
+    os.totalmem(),
+  )}`,
+      runtime: runtime(os.uptime()),
+      status: "Always On 🟢",
     });
   res.status(200).send(`
 <html>
 <head>
-<title>Stats Server Bard AI</title>
+<title>✨ Stats Server Bard AI ✨</title>
 </head>
 <body>
 <center><b><h1>Stats Servers</h1></b></center>
@@ -183,27 +175,17 @@ Arch : ${os.arch()}
 <br>
 Status : Normal 🟢
 <br>
+Platform : ${os.platform()}
+<br>
 Hostname : RizzyFuzz Backend
 <br>
 Response Server : ${latensi.toFixed(4)} s
-<br>
-Download : ${download}
-<br>
-Upload : ${upload}
-<br>
-Total Storage : ${totalGb} GB
-<br>
-Used Storage : ${usedGb} GB
-<br>
-Free Storage : ${freeGb} GB
 <br>
 CPU : ${os.cpus()[0].model}${
     os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""
   }
 <br>
 Release : ${os.release()}
-<br>
-Platform : ${os.platform()}
 <br>
 Memory RAM :  ${formatBytes(os.totalmem() - os.freemem())} / ${formatBytes(
     os.totalmem(),
