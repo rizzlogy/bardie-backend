@@ -190,13 +190,13 @@ app.all("/status", async (req, res, next) => {
   });
 });
 
-app.use((req, res, next) =>
+app.use((req, res, next) => {
     res.status(404).json({
     content: "Not Found!",
     status: 500,
     creator: "RizzyFuzz",
   });
-);
+});
 
 app.listen(PORT, () => {
   console.log("Server running on port " + PORT);
