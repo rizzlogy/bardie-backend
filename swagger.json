@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Unofficial BardAI API Documentation",
-    "description": "Simple API for BardAI to Submit Questions",
+    "title": "Bard API Documentation",
+    "description": "API documentation for Bard",
     "contact": {
       "name": "RizzyFuzz",
       "url": "https://www.rizzy.eu.org/#contact",
@@ -16,8 +16,11 @@
       "properties": {
         "ask": {
           "type": "string",
-          "description": "The question to be submitted to BardAI."
+          "description": "The question to be asked to Bard."
         }
+      },
+      "example": {
+        "ask": "What is www.wonsacloud.com"
       }
     },
     "Answer": {
@@ -25,16 +28,22 @@
       "properties": {
         "content": {
           "type": "string",
-          "description": "The response content from the question request."
+          "description": "The response content of the question request."
         },
         "status": {
           "type": "integer",
-          "description": "HTTP status code."
+          "description": "HTTP status code.",
+          "example": 200
         },
         "creator": {
           "type": "string",
-          "description": "Response creator."
+          "description": "Creator of the response."
         }
+      },
+      "example": {
+        "content": "www.wonsacloud.com is the website of Wonsa Cloud, a cloud computing service provider in Indonesia...",
+        "status": 200,
+        "creator": "RizzyFuzz"
       }
     },
     "StatusResponse": {
@@ -45,27 +54,27 @@
           "properties": {
             "ping": {
               "type": "string",
-              "description": "Ping time to the server."
+              "description": "Server ping time."
             },
             "cpu": {
               "type": "string",
-              "description": "Server's CPU information."
+              "description": "Information about the server's CPU."
             },
             "platform": {
               "type": "string",
-              "description": "Server's operating system platform."
+              "description": "Server operating system platform."
             },
             "arch": {
               "type": "string",
-              "description": "Server's architecture."
+              "description": "Server architecture."
             },
             "memoryRAM": {
               "type": "string",
-              "description": "Server's RAM usage information."
+              "description": "Information about server RAM usage."
             },
             "runtime": {
               "type": "string",
-              "description": "Server's runtime duration."
+              "description": "Server runtime duration."
             }
           }
         },
@@ -75,16 +84,28 @@
         },
         "creator": {
           "type": "string",
-          "description": "Response creator."
+          "description": "Creator of the response."
         }
+      },
+      "example": {
+        "stats": {
+          "ping": "0.0073 s",
+          "cpu": "Intel(R) Xeon(R) Processor @ 2.50GHz (2x)",
+          "platform": "linux",
+          "arch": "x64",
+          "memoryRAM": "206.42 MB / 1.16 GB",
+          "runtime": "5 minutes, 23 seconds"
+        },
+        "status": "Always On 🟢",
+        "creator": "RizzyFuzz ©Vercel Inc."
       }
     }
   },
   "paths": {
     "/api/onstage": {
       "post": {
-        "summary": "Submit a question to BardAI",
-        "description": "Endpoint for submitting a question to BardAI.",
+        "summary": "Ask a question to Bard",
+        "description": "Endpoint for submitting a question to Bard.",
         "parameters": [
           {
             "name": "request",
@@ -105,13 +126,53 @@
           "400": {
             "description": "Bad Request",
             "schema": {
-              "$ref": "#/definitions/Answer"
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "Error message content."
+                },
+                "status": {
+                  "type": "integer",
+                  "description": "HTTP status code.",
+                  "example": 400
+                },
+                "creator": {
+                  "type": "string",
+                  "description": "Creator of the response."
+                }
+              },
+              "example": {
+                "content": "Bad Request: No Query Ask Provided",
+                "status": 400,
+                "creator": "RizzyFuzz"
+              }
             }
           },
           "500": {
             "description": "Internal Server Error",
             "schema": {
-              "$ref": "#/definitions/Answer"
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "Error message content."
+                },
+                "status": {
+                  "type": "integer",
+                  "description": "HTTP status code.",
+                  "example": 500
+                },
+                "creator": {
+                  "type": "string",
+                  "description": "Creator of the response."
+                }
+              },
+              "example": {
+                "content": "Internal Server Error",
+                "status": 500,
+                "creator": "RizzyFuzz"
+              }
             }
           }
         }
@@ -131,4 +192,4 @@
       }
     }
   }
-}
+              }
