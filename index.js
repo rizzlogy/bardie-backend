@@ -145,8 +145,7 @@ app.get("/", function (req, res) {
 app.all("/status", async (req, res, next) => {
   const timestamp = speed();
   const latensi = speed() - timestamp;
-  if (req.query.format && req.query.format == "json")
-    return res.send({
+   res.send({
       stats: {
         ping: `${latensi.toFixed(4)} s`,
         cpu: `${os.cpus()[0].model}${
@@ -162,43 +161,6 @@ app.all("/status", async (req, res, next) => {
       status: "Always On 🟢",
       creator: "RizzyFuzz ©Vercel Inc.",
     });
-  res.status(200).send(`
-<html>
-<head>
-<title>✨ Stats Server Bard AI ✨</title>
-</head>
-<body>
-<center><b><h1>Stats Servers</h1></b></center>
-<hr>
-<center>
-Arch : ${os.arch()}
-<br>
-Status : Normal 🟢
-<br>
-Platform : ${os.platform()}
-<br>
-Powered : Vercel Inc.
-<br>
-Hostname : RizzyFuzz Backend
-<br>
-Response Server : ${latensi.toFixed(4)} s
-<br>
-CPU : ${os.cpus()[0].model}${
-    os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""
-  }
-<br>
-Release : ${os.release()}
-<br>
-Memory RAM :  ${formatBytes(os.totalmem() - os.freemem())} / ${formatBytes(
-    os.totalmem(),
-  )}
-<br>
-Runtime Server : ${runtime(os.uptime())}
-</hr>
-</center>
-</body>
-</html>
-`);
 });
 
 app.use((req, res, next) =>
