@@ -152,13 +152,13 @@ app.all("/status", async (req, res, next) => {
     return res.send({
       ping: latensi.toFixed(4),
       cpu: `${os.cpus()[0].model}${
-    os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""
+        os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""
       }`,
       platfrom: os.platform(),
       arch: os.arch(),
       memoryRAM: `${formatBytes(os.totalmem() - os.freemem())} / ${formatBytes(
-    os.totalmem(),
-  )}`,
+        os.totalmem(),
+      )}`,
       runtime: runtime(os.uptime()),
       status: "Always On 🟢",
     });
