@@ -6,7 +6,8 @@ const Bard = require("./lib/bard");
 const os = require("os");
 const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
-const bjir = new Date();
+const speed = require("performance-now");
+const nou = require("node-os-utils");
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
@@ -41,6 +42,21 @@ function runtime(seconds) {
   var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
   var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
   return dDisplay + hDisplay + mDisplay + sDisplay;
+}
+
+async function checkBandwidth() {
+    ind = 0;
+    out = 0;
+
+    for (let i of await require("node-os-utils").netstat.stats()) {
+      ind += parseInt(i.inputBytes);
+      out += parseInt(i.outputBytes);
+    }
+
+    return {
+      download: await format(ind),
+      upload: await format(out),
+    };
 }
 
 function status(code) {
@@ -143,7 +159,8 @@ app.get("/", function (req, res) {
 });
 
 app.all("/status", async (req, res, next) => {
-  const woilah = (new Date() - bjir) / 1000;
+  const timestamp = speed();
+  const latensi = speed() - timestamp;
   if (req.query.format && req.query.format == "json")
     return res.send({
       ping: new Date() - ping,
@@ -159,13 +176,13 @@ app.all("/status", async (req, res, next) => {
 <center><b><h1>Status Servers</h1></b></center>
 <hr>
 <center>
-Hostname : RizzyFuzz Backend
-<br>
-Response Server : ${woilah} s
+Arch : ${os.arch()}
 <br>
 Status : Normal
 <br>
-Arch : ${os.arch()}
+Hostname : RizzyFuzz Backend
+<br>
+Response Server : ${latensi.toFixed(4)} s
 <br>
 CPU : ${os.cpus()[0].model}${
     os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""
