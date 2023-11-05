@@ -129,8 +129,8 @@ app.get("/", function (req, res) {
 });
 
 app.all("/status", async (req, res, next) => {
-  ping = new Date();
-  core = os.cpus();
+  var tmp = new Date();
+  var tmps = (new Date() - tmp) / 1000;
   if (req.query.format && req.query.format == "json")
     return res.send({
       ping: new Date() - ping,
@@ -140,19 +140,25 @@ app.all("/status", async (req, res, next) => {
   res.status(200).send(`
 <html>
 <head>
-<title>Server Status Shorts Link!</title>
+<title>Server Status Bard AI</title>
 </head>
 <body>
-<center><b><h1>Status Servers!</h1></b></center>
+<center><b><h1>Status Servers</h1></b></center>
 <hr>
 <center>
-Ping : ${new Date() - ping} ms
+Ping : ${tmps} s
 <br>
 Status : Normal
 <br>
-Core : ${core.length}
+Hostname : ${os.hostname()}
 <br>
-CPU : ${core[0].model}
+Arch : ${os.arch()}
+<br>
+CPU : ${os.cpus()[0].model}${os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""}
+<br>
+Release : ${os.release()}
+<br>
+Platform : ${os.platform()}
 <br>
 Memory RAM :  ${formatBytes(os.totalmem() - os.freemem())} / ${formatBytes(
     os.totalmem(),
