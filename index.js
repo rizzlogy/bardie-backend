@@ -145,22 +145,22 @@ app.get("/", function (req, res) {
 app.all("/status", async (req, res, next) => {
   const timestamp = speed();
   const latensi = speed() - timestamp;
-   res.send({
-      stats: {
-        ping: `${latensi.toFixed(4)} s`,
-        cpu: `${os.cpus()[0].model}${
-          os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""
-        }`,
-        platfrom: os.platform(),
-        arch: os.arch(),
-        memoryRAM: `${formatBytes(
-          os.totalmem() - os.freemem(),
-        )} / ${formatBytes(os.totalmem())}`,
-        runtime: runtime(os.uptime()),
-      },
-      status: "Always On 🟢",
-      creator: "RizzyFuzz ©Vercel Inc.",
-    });
+  res.send({
+    stats: {
+      ping: `${latensi.toFixed(4)} s`,
+      cpu: `${os.cpus()[0].model}${
+        os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""
+      }`,
+      platfrom: os.platform(),
+      arch: os.arch(),
+      memoryRAM: `${formatBytes(os.totalmem() - os.freemem())} / ${formatBytes(
+        os.totalmem(),
+      )}`,
+      runtime: runtime(os.uptime()),
+    },
+    status: "Always On 🟢",
+    creator: "RizzyFuzz ©Vercel Inc.",
+  });
 });
 
 app.use((req, res, next) =>
