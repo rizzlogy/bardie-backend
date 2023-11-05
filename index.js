@@ -7,7 +7,7 @@ const os = require("os");
 const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
 const speed = require("performance-now");
-const swaggerDocument = require("./docs.json");
+const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
 
 app.set("json spaces", 2);
@@ -159,11 +159,12 @@ app.get("/", (req, res) => {
   );
 });
 
-app.get("/docs.json", (req, res) => {
+app.get("/swagger.json", (req, res) => {
   swaggerDocument.host = req.get("host");
   swaggerDocument.schemes = ["https"];
   res.json(swaggerDocument);
 });
+
 app.all("/status", async (req, res, next) => {
   const timestamp = speed();
   const latensi = speed() - timestamp;
