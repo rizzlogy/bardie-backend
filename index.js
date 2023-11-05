@@ -160,7 +160,7 @@ app.all("/status", async (req, res, next) => {
         runtime: runtime(os.uptime()),
       },
       status: "Always On 🟢",
-      creator: "RizzyFuzz",
+      creator: "RizzyFuzz ©Vercel Inc.",
     });
   res.status(200).send(`
 <html>
@@ -177,9 +177,9 @@ Status : Normal 🟢
 <br>
 Platform : ${os.platform()}
 <br>
-Hostname : RizzyFuzz Backend
+Powered : Vercel Inc.
 <br>
-Powered : Vercel
+Hostname : RizzyFuzz Backend
 <br>
 Response Server : ${latensi.toFixed(4)} s
 <br>
