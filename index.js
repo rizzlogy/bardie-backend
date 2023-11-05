@@ -154,7 +154,9 @@ Hostname : ${os.hostname()}
 <br>
 Arch : ${os.arch()}
 <br>
-CPU : ${os.cpus()[0].model}${os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""}
+CPU : ${os.cpus()[0].model}${
+    os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""
+  }
 <br>
 Release : ${os.release()}
 <br>
