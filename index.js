@@ -148,7 +148,11 @@ app.get("/", (req, res) => {
     }
     .swagger-ui .topbar-wrapper img {
       content: url("https://www.gstatic.com/lamda/images/favicon_v1_150160cddff7f294ce30.svg");
-    }`,
+    }
+    .swagger-ui .opblock-section-body .parameters-col_description {
+     width: 100px;
+    }
+    `,
       customfavIcon:
         "https://www.gstatic.com/lamda/images/favicon_v1_150160cddff7f294ce30.svg",
       customSiteTitle: swaggerDocument.info.title,
