@@ -3,10 +3,10 @@
   "info": {
     "version": "1.0.0",
     "title": "Bard API Documentation",
-    "description": "API documentation for Bard",
+    "description": "Unofficially API documentation for Bard Google AI",
     "contact": {
       "name": "RizzyFuzz",
-      "url": "https://www.rizzy.eu.org/#contact",
+      "url": "https://www.rizzy.eu.org/",
       "email": "support@rizzy.eu.org"
     }
   },
