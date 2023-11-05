@@ -10,9 +10,7 @@
       "post": {
         "summary": "Menanyakan pertanyaan kepada Bard",
         "description": "Endpoint untuk mengajukan pertanyaan kepada Bard.",
-        "consumes": [
-          "application/json"
-        ],
+        "consumes": ["application/json"],
         "parameters": [
           {
             "name": "request",
