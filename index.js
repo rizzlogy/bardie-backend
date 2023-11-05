@@ -94,7 +94,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.post("/api/onstage", cors(), async (req, res) => {
-  const { ask } = req.body;
+  const { ask } = req.body ? req.body : req.query;
   if (!ask) {
     return res.status(400).json({
       content: "Bad Request: No Query Ask Provided",
