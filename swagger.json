@@ -10,13 +10,26 @@
       "post": {
         "summary": "Menanyakan pertanyaan kepada Bard",
         "description": "Endpoint untuk mengajukan pertanyaan kepada Bard.",
+        "consumes": [
+          "application/json"
+        ],
         "parameters": [
           {
-            "name": "ask",
-            "in": "query",
+            "name": "request",
+            "in": "body",
             "required": true,
-            "type": "string",
-            "description": "Pertanyaan yang ingin diajukan kepada Bard."
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ask": {
+                  "type": "string",
+                  "description": "Pertanyaan yang ingin diajukan kepada Bard."
+                }
+              },
+              "example": {
+                "ask": "siapa itu wonsa"
+              }
+            }
           }
         ],
         "responses": {
