@@ -6,7 +6,7 @@ const Bard = require("./lib/bard");
 const os = require("os");
 const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
-var tmp = new Date();
+const bjir = new Date();
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
@@ -130,7 +130,7 @@ app.get("/", function (req, res) {
 });
 
 app.all("/status", async (req, res, next) => {
-  var tmps = (new Date() - tmp) / 1000;
+  const woilah = (new Date() - bjir) / 1000;
   if (req.query.format && req.query.format == "json")
     return res.send({
       ping: new Date() - ping,
@@ -146,11 +146,11 @@ app.all("/status", async (req, res, next) => {
 <center><b><h1>Status Servers</h1></b></center>
 <hr>
 <center>
-Ping : ${tmps} s
+Hostname : RizzyFuzz Backend
+<br>
+Response Server : ${woilah} s
 <br>
 Status : Normal
-<br>
-Hostname : RizzyFuzz Backend
 <br>
 Arch : ${os.arch()}
 <br>
