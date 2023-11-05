@@ -9,7 +9,7 @@ const PORT = 8022 || 8888 || 1923;
 const speed = require("performance-now");
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
-const { ignoreFavicon } = require(".lib/ignoreFavicon.js");
+const { ignoreFavicon } = require("./lib/ignoreFavicon");
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
