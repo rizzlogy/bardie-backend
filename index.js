@@ -193,7 +193,7 @@ app.all("/status", async (req, res, next) => {
 app.use((req, res, next) => {
   res.status(404).json({
     content: "Not Found!",
-    status: 500,
+    status: 404,
     creator: "RizzyFuzz",
   });
 });
