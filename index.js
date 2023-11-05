@@ -3,6 +3,7 @@ const cors = require("cors");
 const logger = require("morgan");
 const chalk = require("chalk");
 const Bard = require("./lib/bard");
+const os = require("os");
 const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
 
@@ -126,6 +127,41 @@ app.get("/", function (req, res) {
     msg: "Server API ON!",
   });
 });
+
+app.all('/status', async (req, res, next) => {
+ping = new Date
+core = os.cpus()
+if (req.query.format && req.query.format == 'json') return res.send({ ping: new Date - ping, core:core.length, status: "on" })
+res.status(200).send(`
+<html>
+<head>
+<title>Server Status Shorts Link!</title>
+</head>
+<body>
+<center><b><h1>Status Servers!</h1></b></center>
+<hr>
+<center>
+Ping : ${new Date - ping} ms
+<br>
+Status : Normal
+<br>
+Core : ${core.length}
+<br>
+Cpu : ${core[0].model}
+</hr>
+</center>
+</body>
+</html>
+`)
+})
+
+app.use((req, res, next) => res.status(404).send(`<html>
+<head><title>404 Not Found</title></head>
+<body>
+<center><h1>404 Not Found</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>`))
 
 app.listen(PORT, () => {
   console.log("Server running on port " + PORT);
