@@ -5,7 +5,7 @@ const chalk = require("chalk");
 const Bard = require("./lib/bard");
 const os = require("os");
 const app = express();
-const PORT = process.env.PORT || 8022 || 8888 || 1923;
+const PORT = 8022 || 8888 || 1923;
 const speed = require("performance-now");
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
@@ -94,7 +94,7 @@ app.use(function (err, req, res, next) {
 });
 
 app.post("/api/onstage", cors(), async (req, res) => {
-  const { ask } = req.body ? req.body : req.query.ask;
+  const { ask } = req.body;
   if (!ask) {
     return res.status(400).json({
       content: "Bad Request: No Query Ask Provided",
