@@ -6,6 +6,7 @@ const Bard = require("./lib/bard");
 const os = require("os");
 const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
+var tmp = new Date();
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
@@ -129,7 +130,6 @@ app.get("/", function (req, res) {
 });
 
 app.all("/status", async (req, res, next) => {
-  var tmp = new Date();
   var tmps = (new Date() - tmp) / 1000;
   if (req.query.format && req.query.format == "json")
     return res.send({
