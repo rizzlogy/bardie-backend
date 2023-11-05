@@ -8,7 +8,7 @@
       "name": "RizzyFuzz",
       "url": "https://www.rizzy.eu.org/#contact",
       "email": "support@rizzy.eu.org"
-    },
+    }
   },
   "paths": {
     "/api/onstage": {
