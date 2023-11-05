@@ -1,0 +1,105 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Dokumentasi API Bard",
+    "description": "Dokumentasi API untuk Bard"
+  },
+  "paths": {
+    "/api/onstage": {
+      "post": {
+        "summary": "Menanyakan pertanyaan kepada Bard",
+        "description": "Endpoint untuk mengajukan pertanyaan kepada Bard.",
+        "parameters": [
+          {
+            "name": "ask",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Pertanyaan yang ingin diajukan kepada Bard."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "Isi respons dari permintaan pertanyaan."
+                },
+                "status": {
+                  "type": "integer",
+                  "description": "Kode status HTTP.",
+                  "example": 200
+                },
+                "creator": {
+                  "type": "string",
+                  "description": "Pembuat respons."
+                }
+              },
+              "example": {
+                "content": "www.wonsacloud.com adalah situs web dari Wonsa Cloud, sebuah perusahaan penyedia layanan cloud computing di Indonesia...",
+                "status": 200,
+                "creator": "RizzyFuzz"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "Isi pesan kesalahan."
+                },
+                "status": {
+                  "type": "integer",
+                  "description": "Kode status HTTP.",
+                  "example": 400
+                },
+                "creator": {
+                  "type": "string",
+                  "description": "Pembuat respons."
+                }
+              },
+              "example": {
+                "content": "Bad Request: No Query Ask Provided",
+                "status": 400,
+                "creator": "RizzyFuzz"
+              }
+            }
+          }
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "Isi pesan kesalahan."
+                },
+                "status": {
+                  "type": "integer",
+                  "description": "Kode status HTTP.",
+                  "example": 500
+                },
+                "creator": {
+                  "type": "string",
+                  "description": "Pembuat respons."
+                }
+              },
+              "example": {
+                "content": "Internal Server Error",
+                "status": 500,
+                "creator": "RizzyFuzz"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
