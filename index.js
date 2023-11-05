@@ -163,7 +163,7 @@ app.all("/status", async (req, res, next) => {
   const latensi = speed() - timestamp;
   var { totalGb, usedGb, freeGb } = await nou.drive.info();
   var { download, upload } = await checkBandwidth();
-  
+
   if (req.query.format && req.query.format == "json")
     return res.send({
       ping: new Date() - ping,
