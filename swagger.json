@@ -4,6 +4,11 @@
     "version": "1.0.0",
     "title": "Dokumentasi API Bard",
     "description": "Dokumentasi API untuk Bard"
+    "contact": {
+      "name": "RizzyFuzz",
+      "url": "https://www.rizzy.eu.org/#contact",
+      "email": "support@rizzy.eu.org"
+    },
   },
   "paths": {
     "/api/onstage": {
@@ -24,7 +29,7 @@
                 }
               },
               "example": {
-                "ask": "hi"
+                "ask": "apa itu www.wonsacloud.com"
               }
             }
           }
@@ -52,6 +57,58 @@
               "example": {
                 "content": "www.wonsacloud.com adalah situs web dari Wonsa Cloud, sebuah perusahaan penyedia layanan cloud computing di Indonesia...",
                 "status": 200,
+                "creator": "RizzyFuzz"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "Isi pesan kesalahan."
+                },
+                "status": {
+                  "type": "integer",
+                  "description": "Kode status HTTP.",
+                  "example": 400
+                },
+                "creator": {
+                  "type": "string",
+                  "description": "Pembuat respons."
+                }
+              },
+              "example": {
+                "content": "Bad Request: No Query Ask Provided",
+                "status": 400,
+                "creator": "RizzyFuzz"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "Isi pesan kesalahan."
+                },
+                "status": {
+                  "type": "integer",
+                  "description": "Kode status HTTP.",
+                  "example": 500
+                },
+                "creator": {
+                  "type": "string",
+                  "description": "Pembuat respons."
+                }
+              },
+              "example": {
+                "content": "Internal Server Error",
+                "status": 500,
                 "creator": "RizzyFuzz"
               }
             }
