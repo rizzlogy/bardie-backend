@@ -15,7 +15,7 @@ app.set("json spaces", 2);
 app.set("trust proxy", true);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-ap.use(ignoreFavicon);
+app.use(ignoreFavicon);
 app.use(swaggerUi.serve);
 app.disable("x-powered-by");
 app.use((req, res, next) => {
