@@ -154,7 +154,9 @@ Core : ${core.length}
 <br>
 CPU : ${core[0].model}
 <br>
-Memory RAM :  ${formatBytes(os.totalmem() - os.freemem())} / ${formatBytes(os.totalmem())}
+Memory RAM :  ${formatBytes(os.totalmem() - os.freemem())} / ${formatBytes(
+    os.totalmem(),
+  )}
 </hr>
 </center>
 </body>
