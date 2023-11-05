@@ -7,11 +7,16 @@ const os = require("os");
 const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
 const speed = require("performance-now");
+const swaggerDocument = require("./docs.json");
+const swaggerUi = require("swagger-ui-express");
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(swaggerUi.serve);
+app.use(express.static("public"));
+app.use('/public', express.static('public'));
 app.disable("x-powered-by");
 app.use((req, res, next) => {
   res.setHeader("x-powered-by", "RizzyFuzz Backend");
@@ -134,14 +139,30 @@ app.all("/api/onstage", (req, res) => {
   }
 });
 
-app.get("/", function (req, res) {
-  res.status(200).json({
-    status: 200,
-    creator: "RizzyFuzz",
-    msg: "Server API ON!",
-  });
+app.get("/", (req, res) => {
+  swaggerDocument.host = req.get("host");
+  swaggerDocument.schemes = ["https"];
+  res.send(
+    swaggerUi.generateHTML(swaggerDocument, {
+      customCss: `.swagger-ui .topbar .download-url-wrapper { display: none } 
+    .swagger-ui .topbar-wrapper img[alt="Bardie Web API"], .topbar-wrapper span {
+      visibility: colapse;
+    }
+    .swagger-ui .topbar-wrapper img {
+      content: url("https://www.gstatic.com/lamda/images/favicon_v1_150160cddff7f294ce30.svg");
+    }`,
+      customfavIcon: "https://www.gstatic.com/lamda/images/favicon_v1_150160cddff7f294ce30.svg",
+      customSiteTitle: swaggerDocument.info.title,
+      customSiteDesc: swaggerDocument.info.description,
+    }),
+  );
 });
 
+app.get("/docs.json", (req, res) => {
+  swaggerDocument.host = req.get("host");
+  swaggerDocument.schemes = ["https"];
+  res.json(swaggerDocument);
+});
 app.all("/status", async (req, res, next) => {
   const timestamp = speed();
   const latensi = speed() - timestamp;
