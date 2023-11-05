@@ -147,7 +147,8 @@ app.all("/status", async (req, res, next) => {
   const latensi = speed() - timestamp;
   if (req.query.format && req.query.format == "json")
     return res.send({
-      ping: latensi.toFixed(4),
+      stats: {
+      ping: `${latensi.toFixed(4)} s`,
       cpu: `${os.cpus()[0].model}${
         os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""
       }`,
@@ -156,8 +157,10 @@ app.all("/status", async (req, res, next) => {
       memoryRAM: `${formatBytes(os.totalmem() - os.freemem())} / ${formatBytes(
         os.totalmem(),
       )}`,
-      runtime: runtime(os.uptime()),
+      runtime: runtime(os.uptime())
+      },
       status: "Always On 🟢",
+      creator: "RizzyFuzz"
     });
   res.status(200).send(`
 <html>
@@ -175,6 +178,8 @@ Status : Normal 🟢
 Platform : ${os.platform()}
 <br>
 Hostname : RizzyFuzz Backend
+<br>
+Powered : Vercel
 <br>
 Response Server : ${latensi.toFixed(4)} s
 <br>
