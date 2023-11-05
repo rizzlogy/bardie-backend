@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(swaggerUi.serve);
 app.use(express.static("public"));
-app.use('/public', express.static('public'));
+app.use("/public", express.static("public"));
 app.disable("x-powered-by");
 app.use((req, res, next) => {
   res.setHeader("x-powered-by", "RizzyFuzz Backend");
@@ -151,7 +151,8 @@ app.get("/", (req, res) => {
     .swagger-ui .topbar-wrapper img {
       content: url("https://www.gstatic.com/lamda/images/favicon_v1_150160cddff7f294ce30.svg");
     }`,
-      customfavIcon: "https://www.gstatic.com/lamda/images/favicon_v1_150160cddff7f294ce30.svg",
+      customfavIcon:
+        "https://www.gstatic.com/lamda/images/favicon_v1_150160cddff7f294ce30.svg",
       customSiteTitle: swaggerDocument.info.title,
       customSiteDesc: swaggerDocument.info.description,
     }),
