@@ -115,6 +115,29 @@
           }
         }
       }
+    },
+    "/status": {
+      "get": {
+        "summary": "Mengambil hasil status",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "example": {
+              "stats": {
+                "ping": "0.0073 s",
+                "cpu": "Intel(R) Xeon(R) Processor @ 2.50GHz (2x)",
+                "platfrom": "linux",
+                "arch": "x64",
+                "memoryRAM": "206.42 MB / 1.16 GB",
+                "runtime": "5 minutes, 23 seconds"
+              },
+              "status": "Always On 🟢",
+              "creator": "RizzyFuzz ©Vercel Inc."
+            }
+          }
+        }
+      }
     }
   }
-}
+              }
+                
