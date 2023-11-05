@@ -54,8 +54,8 @@ async function checkBandwidth() {
   }
 
   return {
-    download: await format(ind),
-    upload: await format(out),
+    download: await formatBytes(ind),
+    upload: await formatBytes(out),
   };
 }
 
