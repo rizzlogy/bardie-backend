@@ -161,6 +161,9 @@ app.get("/", function (req, res) {
 app.all("/status", async (req, res, next) => {
   const timestamp = speed();
   const latensi = speed() - timestamp;
+  var { totalGb, usedGb, freeGb } = await nou.drive.info();
+  var { download, upload } = await checkBandwidth();
+  
   if (req.query.format && req.query.format == "json")
     return res.send({
       ping: new Date() - ping,
@@ -170,19 +173,29 @@ app.all("/status", async (req, res, next) => {
   res.status(200).send(`
 <html>
 <head>
-<title>Server Status Bard AI</title>
+<title>Stats Server Bard AI</title>
 </head>
 <body>
-<center><b><h1>Status Servers</h1></b></center>
+<center><b><h1>Stats Servers</h1></b></center>
 <hr>
 <center>
 Arch : ${os.arch()}
 <br>
-Status : Normal
+Status : Normal 🟢
 <br>
 Hostname : RizzyFuzz Backend
 <br>
 Response Server : ${latensi.toFixed(4)} s
+<br>
+Download : ${download}
+<br>
+Upload : ${upload}
+<br>
+Total Storage : ${totalGb} GB
+<br>
+Used Storage : ${usedGb} GB
+<br>
+Free Storage : ${freeGb} GB
 <br>
 CPU : ${os.cpus()[0].model}${
     os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""
