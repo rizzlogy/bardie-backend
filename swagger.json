@@ -1,6 +1,5 @@
 {
   "swagger": "2.0",
-  "openapi": "3.0",
   "info": {
     "version": "1.0.0",
     "title": "Unofficial BardAI API Documentation",
@@ -93,6 +92,60 @@
           "status": 500,
           "creator": "RizzyFuzz"
         }
+      },
+      "StatusResponse": {
+        "type": "object",
+        "properties": {
+          "stats": {
+            "type": "object",
+            "properties": {
+              "ping": {
+                "type": "string",
+                "description": "Ping time to the server."
+              },
+              "cpu": {
+                "type": "string",
+                "description": "Server's CPU information."
+              },
+              "platform": {
+                "type": "string",
+                "description": "Server's operating system platform."
+              },
+              "arch": {
+                "type": "string",
+                "description": "Server's architecture."
+              },
+              "memoryRAM": {
+                "type": "string",
+                "description": "Server's RAM usage information."
+              },
+              "runtime": {
+                "type": "string",
+                "description": "Server's runtime duration."
+              }
+            }
+          },
+          "status": {
+            "type": "string",
+            "description": "Current server status."
+          },
+          "creator": {
+            "type": "string",
+            "description": "Response creator."
+          }
+        },
+        "example": {
+          "stats": {
+            "ping": "0.0073 s",
+            "cpu": "Intel(R) Xeon(R) Processor @ 2.50GHz (2x)",
+            "platform": "Linux",
+            "arch": "x64",
+            "memoryRAM": "206.42 MB / 1.16 GB",
+            "runtime": "5 minutes, 23 seconds"
+          },
+          "status": "Always On 🟢",
+          "creator": "RizzyFuzz"
+        }
       }
     }
   },
@@ -163,4 +216,5 @@
       }
     }
   }
-}
+        }
+                
