@@ -148,19 +148,19 @@ app.all("/status", async (req, res, next) => {
   if (req.query.format && req.query.format == "json")
     return res.send({
       stats: {
-      ping: `${latensi.toFixed(4)} s`,
-      cpu: `${os.cpus()[0].model}${
-        os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""
-      }`,
-      platfrom: os.platform(),
-      arch: os.arch(),
-      memoryRAM: `${formatBytes(os.totalmem() - os.freemem())} / ${formatBytes(
-        os.totalmem(),
-      )}`,
-      runtime: runtime(os.uptime())
+        ping: `${latensi.toFixed(4)} s`,
+        cpu: `${os.cpus()[0].model}${
+          os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""
+        }`,
+        platfrom: os.platform(),
+        arch: os.arch(),
+        memoryRAM: `${formatBytes(
+          os.totalmem() - os.freemem(),
+        )} / ${formatBytes(os.totalmem())}`,
+        runtime: runtime(os.uptime()),
       },
       status: "Always On 🟢",
-      creator: "RizzyFuzz"
+      creator: "RizzyFuzz",
     });
   res.status(200).send(`
 <html>
