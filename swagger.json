@@ -10,6 +10,97 @@
       "email": "support@rizzy.eu.org"
     }
   },
+  "definitions": {
+    "Question": {
+      "type": "object",
+      "properties": {
+        "ask": {
+          "type": "string",
+          "description": "Pertanyaan yang ingin diajukan kepada Bard."
+        }
+      },
+      "example": {
+        "ask": "apa itu www.wonsacloud.com"
+      }
+    },
+    "Answer": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "Isi respons dari permintaan pertanyaan."
+        },
+        "status": {
+          "type": "integer",
+          "description": "Kode status HTTP.",
+          "example": 200
+        },
+        "creator": {
+          "type": "string",
+          "description": "Pembuat respons."
+        }
+      },
+      "example": {
+        "content": "www.wonsacloud.com adalah situs web dari Wonsa Cloud, sebuah perusahaan penyedia layanan cloud computing di Indonesia...",
+        "status": 200,
+        "creator": "RizzyFuzz"
+      }
+    },
+    "StatusResponse": {
+      "type": "object",
+      "properties": {
+        "stats": {
+          "type": "object",
+          "properties": {
+            "ping": {
+              "type": "string",
+              "description": "Lama waktu ping ke server."
+            },
+            "cpu": {
+              "type": "string",
+              "description": "Informasi tentang CPU server."
+            },
+            "platform": {
+              "type": "string",
+              "description": "Platform sistem operasi server."
+            },
+            "arch": {
+              "type": "string",
+              "description": "Arsitektur server."
+            },
+            "memoryRAM": {
+              "type": "string",
+              "description": "Informasi tentang penggunaan RAM server."
+            },
+            "runtime": {
+              "type": "string",
+              "description": "Waktu runtime server."
+            }
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "Status server saat ini."
+        },
+        "creator": {
+          "type": "string",
+          "description": "Pembuat respons."
+        }
+      },
+      "example": {
+        "stats": {
+          "ping": "0.0073 s",
+          "cpu": "Intel(R) Xeon(R) Processor @ 2.50GHz (2x)",
+          "platform": "linux",
+          "arch": "x64",
+          "memoryRAM": "206.42 MB / 1.16 GB",
+          "runtime": "5 minutes, 23 seconds"
+        },
+        "status": "Always On 🟢",
+        "creator": "RizzyFuzz ©Vercel Inc."
+      }
+    }
+  },
   "paths": {
     "/api/onstage": {
       "post": {
@@ -21,16 +112,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "ask": {
-                  "type": "string",
-                  "description": "Pertanyaan yang ingin diajukan kepada Bard."
-                }
-              },
-              "example": {
-                "ask": "apa itu www.wonsacloud.com"
-              }
+              "$ref": "#/definitions/Question"
             }
           }
         ],
@@ -38,79 +120,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "type": "object",
-              "properties": {
-                "content": {
-                  "type": "string",
-                  "description": "Isi respons dari permintaan pertanyaan."
-                },
-                "status": {
-                  "type": "integer",
-                  "description": "Kode status HTTP.",
-                  "example": 200
-                },
-                "creator": {
-                  "type": "string",
-                  "description": "Pembuat respons."
-                }
-              },
-              "example": {
-                "content": "www.wonsacloud.com adalah situs web dari Wonsa Cloud, sebuah perusahaan penyedia layanan cloud computing di Indonesia...",
-                "status": 200,
-                "creator": "RizzyFuzz"
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "content": {
-                  "type": "string",
-                  "description": "Isi pesan kesalahan."
-                },
-                "status": {
-                  "type": "integer",
-                  "description": "Kode status HTTP.",
-                  "example": 400
-                },
-                "creator": {
-                  "type": "string",
-                  "description": "Pembuat respons."
-                }
-              },
-              "example": {
-                "content": "Bad Request: No Query Ask Provided",
-                "status": 400,
-                "creator": "RizzyFuzz"
-              }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "content": {
-                  "type": "string",
-                  "description": "Isi pesan kesalahan."
-                },
-                "status": {
-                  "type": "integer",
-                  "description": "Kode status HTTP.",
-                  "example": 500
-                },
-                "creator": {
-                  "type": "string",
-                  "description": "Pembuat respons."
-                }
-              },
-              "example": {
-                "content": "Internal Server Error",
-                "status": 500,
-                "creator": "RizzyFuzz"
-              }
+              "$ref": "#/definitions/Answer"
             }
           }
         }
@@ -122,17 +132,8 @@
         "responses": {
           "200": {
             "description": "OK",
-            "example": {
-              "stats": {
-                "ping": "0.0073 s",
-                "cpu": "Intel(R) Xeon(R) Processor @ 2.50GHz (2x)",
-                "platfrom": "linux",
-                "arch": "x64",
-                "memoryRAM": "206.42 MB / 1.16 GB",
-                "runtime": "5 minutes, 23 seconds"
-              },
-              "status": "Always On 🟢",
-              "creator": "RizzyFuzz ©Vercel Inc."
+            "schema": {
+              "$ref": "#/definitions/StatusResponse"
             }
           }
         }
