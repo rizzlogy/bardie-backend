@@ -128,11 +128,16 @@ app.get("/", function (req, res) {
   });
 });
 
-app.all('/status', async (req, res, next) => {
-ping = new Date
-core = os.cpus()
-if (req.query.format && req.query.format == 'json') return res.send({ ping: new Date - ping, core:core.length, status: "on" })
-res.status(200).send(`
+app.all("/status", async (req, res, next) => {
+  ping = new Date();
+  core = os.cpus();
+  if (req.query.format && req.query.format == "json")
+    return res.send({
+      ping: new Date() - ping,
+      core: core.length,
+      status: "on",
+    });
+  res.status(200).send(`
 <html>
 <head>
 <title>Server Status Shorts Link!</title>
@@ -141,7 +146,7 @@ res.status(200).send(`
 <center><b><h1>Status Servers!</h1></b></center>
 <hr>
 <center>
-Ping : ${new Date - ping} ms
+Ping : ${new Date() - ping} ms
 <br>
 Status : Normal
 <br>
@@ -152,16 +157,18 @@ Cpu : ${core[0].model}
 </center>
 </body>
 </html>
-`)
-})
+`);
+});
 
-app.use((req, res, next) => res.status(404).send(`<html>
+app.use((req, res, next) =>
+  res.status(404).send(`<html>
 <head><title>404 Not Found</title></head>
 <body>
 <center><h1>404 Not Found</h1></center>
 <hr><center>nginx/1.18.0 (Ubuntu)</center>
 </body>
-</html>`))
+</html>`),
+);
 
 app.listen(PORT, () => {
   console.log("Server running on port " + PORT);
