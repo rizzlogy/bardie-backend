@@ -13,7 +13,7 @@ const { ignoreFavicon } = require("./lib/ignoreFavicon");
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(ignoreFavicon);
 app.use(swaggerUi.serve);
