@@ -150,7 +150,7 @@ Ping : ${tmps} s
 <br>
 Status : Normal
 <br>
-Hostname : ${os.hostname()}
+Hostname : RizzyFuzz Backend
 <br>
 Arch : ${os.arch()}
 <br>
