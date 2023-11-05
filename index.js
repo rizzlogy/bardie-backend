@@ -152,7 +152,9 @@ Status : Normal
 <br>
 Core : ${core.length}
 <br>
-Cpu : ${core[0].model}
+CPU : ${core[0].model}
+<br>
+Total RAM : ${os.totalmem()}
 </hr>
 </center>
 </body>
