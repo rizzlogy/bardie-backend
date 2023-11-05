@@ -1,126 +1,144 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.1.0",
   "info": {
     "version": "1.0.0",
-    "title": "Dokumentasi API Bard",
-    "description": "Dokumentasi API untuk Bard",
+    "title": "Unofficial BardAI API Documentation",
+    "description": "Simple API for BardAI to Submit Questions",
     "contact": {
       "name": "RizzyFuzz",
       "url": "https://www.rizzy.eu.org/#contact",
       "email": "support@rizzy.eu.org"
     }
   },
-  "definitions": {
-    "Question": {
-      "type": "object",
-      "properties": {
-        "ask": {
-          "type": "string",
-          "description": "Pertanyaan yang ingin diajukan kepada Bard."
-        }
-      },
-      "example": {
-        "ask": "apa itu www.wonsacloud.com"
-      }
-    },
-    "Answer": {
-      "type": "object",
-      "properties": {
-        "content": {
-          "type": "string",
-          "description": "Isi respons dari permintaan pertanyaan."
-        },
-        "status": {
-          "type": "integer",
-          "description": "Kode status HTTP.",
-          "example": 200
-        },
-        "creator": {
-          "type": "string",
-          "description": "Pembuat respons."
-        }
-      },
-      "example": {
-        "content": "www.wonsacloud.com adalah situs web dari Wonsa Cloud, sebuah perusahaan penyedia layanan cloud computing di Indonesia...",
-        "status": 200,
-        "creator": "RizzyFuzz"
-      }
-    },
-    "StatusResponse": {
-      "type": "object",
-      "properties": {
-        "stats": {
-          "type": "object",
-          "properties": {
-            "ping": {
-              "type": "string",
-              "description": "Lama waktu ping ke server."
-            },
-            "cpu": {
-              "type": "string",
-              "description": "Informasi tentang CPU server."
-            },
-            "platform": {
-              "type": "string",
-              "description": "Platform sistem operasi server."
-            },
-            "arch": {
-              "type": "string",
-              "description": "Arsitektur server."
-            },
-            "memoryRAM": {
-              "type": "string",
-              "description": "Informasi tentang penggunaan RAM server."
-            },
-            "runtime": {
-              "type": "string",
-              "description": "Waktu runtime server."
-            }
+  "components": {
+    "schemas": {
+      "Question": {
+        "type": "object",
+        "properties": {
+          "ask": {
+            "type": "string",
+            "description": "The question to be submitted to BardAI."
           }
         },
-        "status": {
-          "type": "string",
-          "description": "Status server saat ini."
-        },
-        "creator": {
-          "type": "string",
-          "description": "Pembuat respons."
+        "example": {
+          "ask": "What is www.wonsacloud.com"
         }
       },
-      "example": {
-        "stats": {
-          "ping": "0.0073 s",
-          "cpu": "Intel(R) Xeon(R) Processor @ 2.50GHz (2x)",
-          "platform": "linux",
-          "arch": "x64",
-          "memoryRAM": "206.42 MB / 1.16 GB",
-          "runtime": "5 minutes, 23 seconds"
+      "Answer": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "The response content from the question request."
+          },
+          "status": {
+            "type": "integer",
+            "description": "HTTP status code.",
+            "example": 200
+          },
+          "creator": {
+            "type": "string",
+            "description": "Response creator."
+          }
         },
-        "status": "Always On 🟢",
-        "creator": "RizzyFuzz ©Vercel Inc."
+        "example": {
+          "content": "www.wonsacloud.com is the website of Wonsa Cloud, a cloud computing service provider company in Indonesia...",
+          "status": 200,
+          "creator": "RizzyFuzz"
+        }
+      },
+      "Error400": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "Error message content."
+          },
+          "status": {
+            "type": "integer",
+            "description": "HTTP status code.",
+            "example": 400
+          },
+          "creator": {
+            "type": "string",
+            "description": "Response creator."
+          }
+        },
+        "example": {
+          "content": "Bad Request: No Query Ask Provided",
+          "status": 400,
+          "creator": "RizzyFuzz"
+        }
+      },
+      "Error500": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "description": "Error message content."
+          },
+          "status": {
+            "type": "integer",
+            "description": "HTTP status code.",
+            "example": 500
+          },
+          "creator": {
+            "type": "string",
+            "description": "Response creator."
+          }
+        },
+        "example": {
+          "content": "Internal Server Error",
+          "status": 500,
+          "creator": "RizzyFuzz"
+        }
       }
     }
   },
   "paths": {
     "/api/onstage": {
       "post": {
-        "summary": "Menanyakan pertanyaan kepada Bard",
-        "description": "Endpoint untuk mengajukan pertanyaan kepada Bard.",
-        "parameters": [
-          {
-            "name": "request",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Question"
+        "summary": "Submit a question to BardAI",
+        "description": "Endpoint for submitting a question to BardAI.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Question"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Answer"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Answer"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error400"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error500"
+                }
+              }
             }
           }
         }
@@ -128,16 +146,20 @@
     },
     "/status": {
       "get": {
-        "summary": "Mengambil hasil status",
+        "summary": "Get server status",
         "responses": {
           "200": {
             "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/StatusResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponse"
+                }
+              }
             }
           }
         }
       }
     }
   }
-}
+        }
