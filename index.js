@@ -15,8 +15,6 @@ app.set("trust proxy", true);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(swaggerUi.serve);
-app.use(express.static("public"));
-app.use("/public", express.static("public"));
 app.disable("x-powered-by");
 app.use((req, res, next) => {
   res.setHeader("x-powered-by", "RizzyFuzz Backend");
