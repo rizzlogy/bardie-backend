@@ -20,7 +20,7 @@
         }
       },
       "example": {
-        "ask": "What is www.wonsacloud.com"
+        "ask": "Who is Elon Musk?"
       }
     },
     "Answer": {
@@ -41,7 +41,7 @@
         }
       },
       "example": {
-        "content": "www.wonsacloud.com is the website of Wonsa Cloud, a cloud computing service provider in Indonesia...",
+        "content": "Elon Musk is a South African-born American entrepreneur and business magnate who founded X Corporation (formerly X.com), SpaceX, Tesla, Inc., Neuralink, and The Boring Company. As of November 2023, he is the CEO of Tesla, Inc. and SpaceX, angel investor, CEO, and product architect of Tesla, Inc., owner, chairman and CTO of X Corp., founder of the Boring Company, co-founder of Neuralink and OpenAI, and president of the Musk Foundation. He is the wealthiest person in the world, with an estimated net worth of US$231 billion according to Forbes.\n\nMusk is known for his ambitious and often controversial goals, such as colonizing Mars and making electric cars mainstream. He is also a vocal advocate for artificial intelligence and renewable energy.\n\nMusk's companies have had a significant impact on the world. Tesla is the world's leading electric car maker, and SpaceX is the first private company to send astronauts to the International Space Station. Neuralink is developing brain-computer interfaces, and The Boring Company is building tunnels to reduce traffic congestion.\n\nMusk is a polarizing figure, but there is no doubt that he is one of the most influential entrepreneurs of our time. His work is helping to shape the future of transportation, energy, and technology."
         "status": 200,
         "creator": "RizzyFuzz"
       }
