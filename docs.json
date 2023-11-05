@@ -71,7 +71,7 @@
                 "creator": "RizzyFuzz"
               }
             }
-          }
+          },
           "500": {
             "description": "Internal Server Error",
             "schema": {
