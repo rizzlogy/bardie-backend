@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(ignoreFavicon);
 app.use(swaggerUi.serve);
+app.use(cors())
 app.disable("x-powered-by");
 app.use((req, res, next) => {
   res.setHeader("x-powered-by", "RizzyFuzz Backend");
@@ -95,7 +96,7 @@ app.use(function (err, req, res, next) {
   });
 });
 
-app.post("/api/onstage", cors(), async (req, res) => {
+app.post("/api/onstage", async (req, res) => {
   const { ask } = req.body;
   if (!ask) {
     return res.status(400).json({
@@ -169,7 +170,7 @@ app.get("/swagger.json", (req, res) => {
   res.json(swaggerDocument);
 });
 
-app.get("/status", cors(), async (req, res, next) => {
+app.get("/status", async (req, res, next) => {
   const timestamp = speed();
   const latensi = speed() - timestamp;
   res.send({
