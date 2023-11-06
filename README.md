@@ -8,8 +8,8 @@
 
 Powered by [Google Bard](https://bard.google.com/), and hosted by [Vercel](vercel.com).
 
-Visit `bardie` on GitHub here: https://github.com/rizzlogy/BardAI
+Visit `bardie` on GitHub here: [BardAI](https://github.com/rizzlogy/BardAI)
 
-Visit `bardie` on NPM here: https://www.npmjs.com/package/bardie
+Visit `bardie` on NPM here: [Bardie](https://www.npmjs.com/package/bardie)
 
 ### RizzyFuzz ©Google Inc.
