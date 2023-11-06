@@ -81,9 +81,11 @@ app.use((req, res, next) => {
   const REVERSE_PROXY = eval(true);
   const ALLOW = ["bard.rizzy.eu.org"];
   if (REVERSE_PROXY && !ALLOW.includes(req.get("host")))
-    return res
-      .status(403)
-      .send(`<center><h1>Sorry, Access Denied</h1></center>`);
+    return res.status(403).json({
+    content: "Sorry, Access Denied!",
+    status: 403,
+    creator: "RizzyFuzz",
+  });
   next();
 });
 
