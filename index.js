@@ -169,7 +169,7 @@ app.get("/swagger.json", (req, res) => {
   res.json(swaggerDocument);
 });
 
-app.all("/status", async (req, res, next) => {
+app.get("/status", cors(), async (req, res, next) => {
   const timestamp = speed();
   const latensi = speed() - timestamp;
   res.send({
