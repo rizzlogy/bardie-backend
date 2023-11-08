@@ -41,7 +41,7 @@
         }
       },
       "example": {
-        "content": "Hi there! How can I help you today?"
+        "content": "Hi there! How can I help you today?",
         "status": 200,
         "creator": "RizzyFuzz"
       }
