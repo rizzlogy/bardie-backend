@@ -109,7 +109,7 @@
         "parameters": [
           {
             "name": "Request Body",
-            "in": "BardAI",
+            "in": "body",
             "required": true,
             "schema": {
               "$ref": "#/definitions/Question"
