@@ -173,8 +173,8 @@ app.get("/swagger.json", (req, res) => {
 });
 
 app.get("/status", async (req, res, next) => {
-  const bard = new Bard();
   try {
+  const bard = new Bard();
     await bard.configure(
       1,
       "cgi0zjh5k1ckIk7VU6CZ9PaXwmZOXYz1mdI6Jg7zSuBk6QTCVHWEVsXbZGmowJHmQ4Epiw.",
@@ -198,6 +198,14 @@ app.get("/status", async (req, res, next) => {
     status: response.status ? "Bard On 🟢" : "Bard Maintenance 🔴",
     creator: "RizzyFuzz ©Vercel Inc.",
   });
+    } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      content: "Internal Server Error!",
+      status: 500,
+      creator: "RizzyFuzz",
+    });
+  }
 });
 
 app.use((req, res, next) => {
