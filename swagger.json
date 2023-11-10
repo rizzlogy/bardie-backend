@@ -187,6 +187,32 @@
             "schema": {
               "$ref": "#/definitions/StatusResponse"
             }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "Error message content."
+                },
+                "status": {
+                  "type": "integer",
+                  "description": "HTTP status code.",
+                  "example": 500
+                },
+                "creator": {
+                  "type": "string",
+                  "description": "Creator of the response."
+                }
+              },
+              "example": {
+                "content": "Internal Server Error",
+                "status": 500,
+                "creator": "RizzyFuzz"
+              }
+            }
           }
         }
       }
