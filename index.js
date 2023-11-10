@@ -174,7 +174,7 @@ app.get("/swagger.json", (req, res) => {
 
 app.get("/status", async (req, res, next) => {
   try {
-  const bard = new Bard();
+    const bard = new Bard();
     await bard.configure(
       1,
       "cgi0zjh5k1ckIk7VU6CZ9PaXwmZOXYz1mdI6Jg7zSuBk6QTCVHWEVsXbZGmowJHmQ4Epiw.",
@@ -182,23 +182,23 @@ app.get("/status", async (req, res, next) => {
     const timestamp = speed();
     const latensi = speed() - timestamp;
     const response = await bard.question("ping!");
-  res.send({
-    stats: {
-      ping: `${latensi.toFixed(4)} s`,
-      cpu: `${os.cpus()[0].model}${
-        os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""
-      }`,
-      platfrom: os.platform(),
-      arch: os.arch(),
-      memoryRAM: `${formatBytes(os.totalmem() - os.freemem())} / ${formatBytes(
-        os.totalmem(),
-      )}`,
-      runtime: runtime(os.uptime()),
-    },
-    status: response.status ? "Bard On 🟢" : "Bard Maintenance 🔴",
-    creator: "RizzyFuzz ©Vercel Inc.",
-  });
-    } catch (error) {
+    res.send({
+      stats: {
+        ping: `${latensi.toFixed(4)} s`,
+        cpu: `${os.cpus()[0].model}${
+          os.cpus().length > 1 ? " (" + os.cpus().length + "x)" : ""
+        }`,
+        platfrom: os.platform(),
+        arch: os.arch(),
+        memoryRAM: `${formatBytes(
+          os.totalmem() - os.freemem(),
+        )} / ${formatBytes(os.totalmem())}`,
+        runtime: runtime(os.uptime()),
+      },
+      status: response.status ? "Bard On 🟢" : "Bard Maintenance 🔴",
+      creator: "RizzyFuzz ©Vercel Inc.",
+    });
+  } catch (error) {
     console.error(error);
     res.status(500).json({
       content: "Internal Server Error!",
