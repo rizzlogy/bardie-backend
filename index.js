@@ -173,8 +173,15 @@ app.get("/swagger.json", (req, res) => {
 });
 
 app.get("/status", async (req, res, next) => {
-  const timestamp = speed();
-  const latensi = speed() - timestamp;
+  const bard = new Bard();
+  try {
+    await bard.configure(
+      1,
+      "cgi0zjh5k1ckIk7VU6CZ9PaXwmZOXYz1mdI6Jg7zSuBk6QTCVHWEVsXbZGmowJHmQ4Epiw.",
+    );
+    const timestamp = speed();
+    const latensi = speed() - timestamp;
+    const response = await bard.question("ping!");
   res.send({
     stats: {
       ping: `${latensi.toFixed(4)} s`,
@@ -188,7 +195,7 @@ app.get("/status", async (req, res, next) => {
       )}`,
       runtime: runtime(os.uptime()),
     },
-    status: "Always On 🟢",
+    status: response.status ? "Bard On 🟢" : "Bard Maintenance 🔴",
     creator: "RizzyFuzz ©Vercel Inc.",
   });
 });
