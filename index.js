@@ -14,9 +14,7 @@ const { ignoreFavicon } = require("./lib/ignoreFavicon");
 const STATIC_ROOT = pathJoin(__dirname, "assets/bard/assets");
 app.use("/assets", express.static(STATIC_ROOT));
 const ROOT = pathJoin(__dirname, "assets/bard");
-app.get("/tes", function (req, res) {
-  res.sendFile(pathJoin(ROOT, "index.html"));
-});
+
 app.set("json spaces", 2);
 app.set("trust proxy", true);
 app.use(express.urlencoded({ extended: false }));
@@ -148,7 +146,11 @@ app.all("/api/onstage", (req, res) => {
   }
 });
 
-app.get("/", (req, res) => {
+app.get("/", function (req, res) {
+  res.sendFile(pathJoin(ROOT, "index.html"));
+});
+
+app.get("/developer", (req, res) => {
   swaggerDocument.host = req.get("host");
   swaggerDocument.schemes = ["https"];
   res.send(
