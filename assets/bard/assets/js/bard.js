@@ -145,7 +145,7 @@ const handleDeleteChat = () => {
           title: "Deleting Chat History...",
           icon: "info",
           showConfirmButton: false,
-          timer: 1500, 
+          timer: 1500,
           timerProgressBar: true,
         }).then(() => {
           localStorage.removeItem("all-chats");
