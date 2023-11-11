@@ -17,7 +17,7 @@ const STATIC_ROOT = pathJoin(__dirname, "bard/assets");
 app.use("/assets". express.static(STATIC_ROOT));
 const ROOT = pathJoin(__dirname, "bard");
 app.get('/tes', function(req, res) {
-    res.sendFile(pathJoin(ROOT, "index.html'));
+    res.sendFile(pathJoin(ROOT, "index.html"));
 });
 app.set("json spaces", 2);
 app.set("trust proxy", true);
