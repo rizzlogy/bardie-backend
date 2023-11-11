@@ -12,7 +12,7 @@ let userText = null,
       ? "dark_mode"
       : "light_mode";
     const defaultText =
-      '<div class="default-text">\n<h1>Bardie</h1>\n<p>Start a conversation and explore the power of AI.<br>Your chat history will be displayed here.</p>\n<br><a href="https://bard.rizzy.eu.org/">Click Here API for Developers (Free)</a> </div>';
+      '<div class="default-text">\n<h1>Bardie</h1>\n<p>Start a conversation and explore the power of AI.<br>Your chat history will be displayed here.</p>\n<br><a href="https://bard.rizzy.eu.org/developer">Click Here to get API for Developers (Free)</a> </div>';
     chatContainer.innerHTML = localStorage.getItem("all-chats") || defaultText;
     chatContainer.scrollTo(0, chatContainer.scrollHeight);
   },
