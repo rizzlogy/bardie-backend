@@ -12,7 +12,7 @@ const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
 const { ignoreFavicon } = require("./lib/ignoreFavicon");
 const STATIC_ROOT = pathJoin(__dirname, "bard/assets");
-app.use("/assets".express.static(STATIC_ROOT));
+app.use("/assets", express.static(STATIC_ROOT));
 const ROOT = pathJoin(__dirname, "bard");
 app.get("/tes", function (req, res) {
   res.sendFile(pathJoin(ROOT, "index.html"));
