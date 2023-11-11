@@ -67,7 +67,7 @@ let userText = null,
   },
   showTypingAnimation = async () => {
     // Darken the chat-input
-    chatInput.style.opacity = "0.6";
+    chatInput.style.opacity = "0.2";
 
     const typingAnimationDiv = `
       <div class="chat-content">
