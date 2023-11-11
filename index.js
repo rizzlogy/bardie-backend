@@ -1,6 +1,4 @@
-const {
-  join: pathJoin
-} = require("path");
+const { join: pathJoin } = require("path");
 const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
@@ -14,10 +12,10 @@ const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
 const { ignoreFavicon } = require("./lib/ignoreFavicon");
 const STATIC_ROOT = pathJoin(__dirname, "bard/assets");
-app.use("/assets". express.static(STATIC_ROOT));
+app.use("/assets".express.static(STATIC_ROOT));
 const ROOT = pathJoin(__dirname, "bard");
-app.get('/tes', function(req, res) {
-    res.sendFile(pathJoin(ROOT, "index.html"));
+app.get("/tes", function (req, res) {
+  res.sendFile(pathJoin(ROOT, "index.html"));
 });
 app.set("json spaces", 2);
 app.set("trust proxy", true);
