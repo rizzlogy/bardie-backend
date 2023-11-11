@@ -147,8 +147,11 @@ app.all("/api/onstage", (req, res) => {
 });
 
 app.get("/", function (req, res) {
-  res.sendFile(pathJoin(ROOT, "index.html"));
   res.redirect("/chat");
+});
+
+app.get("/chat", function (req, res) {
+  res.sendFile(pathJoin(ROOT, "index.html"));
 });
 
 app.get("/developer", (req, res) => {
