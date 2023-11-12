@@ -155,7 +155,7 @@ app.get("/chat", function (req, res) {
 });
 
 app.get("/manifest.json", function (req, res) {
-  res.sendFile(pathJoin(ROOT, "manifest.json"));
+  res.sendFile(pathJoin(ROOT, "assets/manifest.json"));
 });
 
 app.get("/developer", (req, res) => {
