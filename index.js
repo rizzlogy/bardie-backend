@@ -17,15 +17,15 @@ app.use("/assets", express.static(STATIC_ROOT));
 const ROOT = pathJoin(__dirname, "assets/bard");
 const cookieParser = require("cookie-parser");
 let setCache = function (req, res, next) {
-  const period = 60 * 5
-  if (req.method == 'GET') {
-    res.set('Cache-control', `public, max-age=${period}`)
+  const period = 60 * 5;
+  if (req.method == "GET") {
+    res.set("Cache-control", `public, max-age=${period}`);
   } else {
-    res.set('Cache-control', `no-store`)
+    res.set("Cache-control", `no-store`);
   }
-  next()
-}
-app.use(setCache)
+  next();
+};
+app.use(setCache);
 app.set("json spaces", 2);
 app.set("trust proxy", true);
 app.use(bodyParser.json());
