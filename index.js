@@ -77,27 +77,6 @@ app.use(
   }),
 );
 
-app.use((req, res, next) => {
-  const REVERSE_PROXY = eval(true);
-  const ALLOW = ["bard.rizzy.eu.org"];
-  if (REVERSE_PROXY && !ALLOW.includes(req.get("host")))
-    return res.status(403).json({
-      content: "Sorry, Access Denied!",
-      status: 403,
-      creator: "RizzyFuzz",
-    });
-  next();
-});
-
-app.use(function (err, req, res, next) {
-  console.error(err.stack);
-  res.status(500).json({
-    content: "Something broke!",
-    status: 500,
-    creator: "RizzyFuzz",
-  });
-});
-
 app.post("/api/onstage", async (req, res) => {
   const { ask } = req.body;
   if (!ask) {
@@ -124,7 +103,7 @@ app.post("/api/onstage", async (req, res) => {
     res
       .status(200)
       .json({ content: response.content, status: 200, creator: "RizzyFuzz" });
-  } catch (error) {
+  } cath (error) {
     console.error(error);
     res.status(500).json({
       content: "Internal Server Error!",
