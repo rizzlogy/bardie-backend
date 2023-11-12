@@ -81,7 +81,7 @@ app.use(
   }),
 );
 
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   const REVERSE_PROXY = eval(true);
   const ALLOW = ["bard.rizzy.eu.org"];
   if (REVERSE_PROXY && !ALLOW.includes(req.get("host")))
@@ -91,7 +91,7 @@ app.use((req, res, next) => {
       creator: "RizzyFuzz",
     });
   next();
-});
+});*/
 
 app.use(function (err, req, res, next) {
   console.error(err.stack);
