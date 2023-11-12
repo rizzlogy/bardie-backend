@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(ignoreFavicon);
 app.use(swaggerUi.serve);
 const corsOptions = {
-  origin: "*", // or your specific origin
+  origin: "*",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   optionsSuccessStatus: 204,
 };
@@ -90,7 +90,7 @@ app.use(
   }),
 );
 
-/*app.use((req, res, next) => {
+app.use((req, res, next) => {
   const REVERSE_PROXY = eval(true);
   const ALLOW = ["bard.rizzy.eu.org"];
   if (REVERSE_PROXY && !ALLOW.includes(req.get("host")))
@@ -100,7 +100,7 @@ app.use(
       creator: "RizzyFuzz",
     });
   next();
-});*/
+});
 
 app.use(function (err, req, res, next) {
   console.error(err.stack);
