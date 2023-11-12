@@ -1,0 +1,16 @@
+{
+  "name": "Bardie",
+  "short_name": "Bardie",
+  "description": "Bardie is a simple chat bot that uses the Google Bard to reply to user messages. Engage in conversations with our AI-powered chat bot and experience interactive and intelligent responses. Explore the capabilities of Google Bard, your virtual assistant.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#343541",
+  "icons": [
+    {
+      "src": "/assets/img/icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
