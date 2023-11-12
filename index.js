@@ -24,7 +24,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(ignoreFavicon);
 app.use(swaggerUi.serve);
-app.use(cors());
+const corsOptions = {
+  origin: "*", // or your specific origin
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  optionsSuccessStatus: 204,
+};
+
+app.use(cors(corsOptions));
 app.disable("x-powered-by");
 app.use((req, res, next) => {
   res.setHeader("x-powered-by", "RizzyFuzz Backend");
