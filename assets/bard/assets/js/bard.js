@@ -67,7 +67,7 @@ let userText = null,
   },
   showTypingAnimation = async () => {
     // Darken the chat-input
-    chatInput.style.opacity = "0.2";
+    chatInput.style.opacity = "0.5";
 
     const typingAnimationDiv = `
       <div class="chat-content">
@@ -110,7 +110,7 @@ let userText = null,
       const outgoingChatDiv = `
         <div class="chat-content">
           <div class="chat-details">
-            <img src="https://avatars.githubusercontent.com/u/141845356?v=4" alt="user-img">
+            <img src="https://www.gravatar.com/avatar" alt="user-img">
             <p>${userText}</p>
           </div>
         </div>`;
