@@ -13,12 +13,12 @@ const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
 const { ignoreFavicon } = require("./lib/ignoreFavicon");
 const STATIC_ROOT = pathJoin(__dirname, "assets/bard/assets");
-app.use("/assets", express.static(STATIC_ROOT));
 const ROOT = pathJoin(__dirname, "assets/bard");
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
 app.use(bodyParser.json());
+app.use("/assets", express.static(STATIC_ROOT));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ignoreFavicon);
 app.use(swaggerUi.serve);
