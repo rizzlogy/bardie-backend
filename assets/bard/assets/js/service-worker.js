@@ -42,12 +42,13 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/assets/js/service-worker.js')
-      .then((registration) => {
-        console.log('Service Worker registered');
-      })
-      .catch((error) => {
-        console.error('Service Worker registration failed:', error);
-      });
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/assets/js/service-worker.js")
+    .then((registration) => {
+      console.log("Service Worker registered");
+    })
+    .catch((error) => {
+      console.error("Service Worker registration failed:", error);
+    });
 }
