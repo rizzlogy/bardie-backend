@@ -154,6 +154,10 @@ app.get("/chat", function (req, res) {
   res.sendFile(pathJoin(ROOT, "index.html"));
 });
 
+app.get("/manifest.json", function (req, res) {
+  res.sendFile(pathJoin(ROOT, "manifest.json"));
+});
+
 app.get("/developer", (req, res) => {
   swaggerDocument.host = req.get("host");
   swaggerDocument.schemes = ["https"];
