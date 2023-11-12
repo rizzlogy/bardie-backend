@@ -4,7 +4,6 @@ const CACHE_NAME = "bardie-cache-v1";
 const urlsToCache = [
   "/",
   "/chat",
-  "/manifest.json",
   "/assets/img/icon.png",
   "/assets/css/bard.css",
   "/assets/js/bard.js",
