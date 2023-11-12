@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Bard API Documentation",
+    "title": "Bardie API Documentation",
     "description": "Unofficially API documentation for Bard Google AI",
     "contact": {
       "name": "RizzyFuzz",
