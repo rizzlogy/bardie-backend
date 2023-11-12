@@ -198,3 +198,14 @@ chatInput.addEventListener("keydown", (_0x174fe5) => {
 loadDataFromLocalstorage();
 
 sendButton.addEventListener("click", handleOutgoingChat);
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/assets/js/service-worker.js")
+    .then((registration) => {
+      console.log("Service Worker registered");
+    })
+    .catch((error) => {
+      console.error("Service Worker registration failed:", error);
+    });
+}
