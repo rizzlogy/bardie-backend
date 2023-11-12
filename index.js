@@ -103,7 +103,7 @@ app.post("/api/onstage", async (req, res) => {
     res
       .status(200)
       .json({ content: response.content, status: 200, creator: "RizzyFuzz" });
-  } cath (error) {
+  } catch (error) {
     console.error(error);
     res.status(500).json({
       content: "Internal Server Error!",
