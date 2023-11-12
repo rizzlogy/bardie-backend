@@ -127,8 +127,8 @@ app.post("/api/onstage", async (req, res) => {
   const bard = new Bard();
   try {
     await bard.configure(
-      2,
-      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLCIUv9f7cCn6fuzYVb6YSWDg.",
+       1,
+      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
     );
     const response = await bard.question(ask);
     if (!response.status)
