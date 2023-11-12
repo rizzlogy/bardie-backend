@@ -34,11 +34,6 @@ app.use(cookieParser());
 app.use(ignoreFavicon);
 app.use(swaggerUi.serve);
 app.use(cors());
-app.disable("x-powered-by");
-app.use((req, res, next) => {
-  res.setHeader("x-powered-by", "RizzyFuzz Backend");
-  next();
-});
 
 function formatBytes(bytes, decimals = 2) {
   if (bytes === 0) return "0 Bytes";
