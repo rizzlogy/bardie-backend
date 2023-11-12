@@ -143,7 +143,6 @@ app.all("/api/onstage", (req, res, next) => {
   next(); // Add this line to pass control to the next middleware
 });
 
-
 app.get("/", function (req, res) {
   res.redirect("/chat");
 });
