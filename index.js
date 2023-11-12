@@ -116,12 +116,12 @@ app.post("/api/onstage", async (req, res) => {
     );
     const response = await bard.question(ask);
     if (!response.status)
-      res.json({
+      res.status(500).json({
         content: response.content,
         status: 500,
         creator: "RizzyFuzz",
       });
-    res.json({ content: response.content, status: 200, creator: "RizzyFuzz" });
+    res.status(200).json({ content: response.content, status: 200, creator: "RizzyFuzz" });
   } catch (error) {
     console.error(error);
     res.status(500).json({
@@ -191,7 +191,7 @@ app.get("/status", async (req, res, next) => {
     const timestamp = speed();
     const latensi = speed() - timestamp;
     const response = await bard.question("ping!");
-    res.send({
+    res.status(200).send({
       stats: {
         ping: `${latensi.toFixed(4)} s`,
         cpu: `${os.cpus()[0].model}${
