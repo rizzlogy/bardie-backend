@@ -32,7 +32,7 @@
         },
         "status": {
           "type": "integer",
-          "description": "HTTP status code.",
+          "dscription": "HTTP status code.",
           "example": 200
         },
         "creator": {
@@ -44,60 +44,6 @@
         "content": "Hi there! How can I help you today?",
         "status": 200,
         "creator": "RizzyFuzz"
-      }
-    },
-    "StatusResponse": {
-      "type": "object",
-      "properties": {
-        "stats": {
-          "type": "object",
-          "properties": {
-            "ping": {
-              "type": "string",
-              "description": "Server ping time."
-            },
-            "cpu": {
-              "type": "string",
-              "description": "Information about the server's CPU."
-            },
-            "platform": {
-              "type": "string",
-              "description": "Server operating system platform."
-            },
-            "arch": {
-              "type": "string",
-              "description": "Server architecture."
-            },
-            "memoryRAM": {
-              "type": "string",
-              "description": "Information about server RAM usage."
-            },
-            "runtime": {
-              "type": "string",
-              "description": "Server runtime duration."
-            }
-          }
-        },
-        "status": {
-          "type": "string",
-          "description": "Current server status."
-        },
-        "creator": {
-          "type": "string",
-          "description": "Creator of the response."
-        }
-      },
-      "example": {
-        "stats": {
-          "ping": "0.0073 s",
-          "cpu": "Intel(R) Xeon(R) Processor @ 2.50GHz (2x)",
-          "platform": "linux",
-          "arch": "x64",
-          "memoryRAM": "206.42 MB / 1.16 GB",
-          "runtime": "5 minutes, 23 seconds"
-        },
-        "status": "Bard On🟢",
-        "creator": "RizzyFuzz ©Vercel Inc."
       }
     }
   },
@@ -147,45 +93,6 @@
                 "status": 400,
                 "creator": "RizzyFuzz"
               }
-            }
-          },
-          "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "content": {
-                  "type": "string",
-                  "description": "Error message content."
-                },
-                "status": {
-                  "type": "integer",
-                  "description": "HTTP status code.",
-                  "example": 500
-                },
-                "creator": {
-                  "type": "string",
-                  "description": "Creator of the response."
-                }
-              },
-              "example": {
-                "content": "Internal Server Error",
-                "status": 500,
-                "creator": "RizzyFuzz"
-              }
-            }
-          }
-        }
-      }
-    },
-    "/status": {
-      "get": {
-        "summary": "Get server status",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/StatusResponse"
             }
           },
           "500": {
