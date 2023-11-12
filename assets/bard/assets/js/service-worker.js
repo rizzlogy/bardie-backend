@@ -3,7 +3,7 @@
 const CACHE_NAME = "bardie-cache-v1";
 const urlsToCache = [
   "/chat",
-  "/assets/manifest.json",
+  "/manifest.json",
   "/assets/img/icon.png",
   "/assets/css/bard.css",
   "/assets/js/bard.js",
