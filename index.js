@@ -132,15 +132,17 @@ app.post("/api/onstage", async (req, res) => {
   }
 });
 
-app.all("/api/onstage", (req, res) => {
+app.all("/api/onstage", (req, res, next) => {
   if (req.method !== "POST") {
-    res.status(405).json({
+    return res.status(405).json({
       content: "Method not allowed",
       status: 405,
       creator: "RizzyFuzz",
     });
   }
+  next(); // Add this line to pass control to the next middleware
 });
+
 
 app.get("/", function (req, res) {
   res.redirect("/chat");
