@@ -1,4 +1,5 @@
 const { join: pathJoin } = require("path");
+const bodyParser = require("body-parser");
 const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
@@ -14,11 +15,13 @@ const { ignoreFavicon } = require("./lib/ignoreFavicon");
 const STATIC_ROOT = pathJoin(__dirname, "assets/bard/assets");
 app.use("/assets", express.static(STATIC_ROOT));
 const ROOT = pathJoin(__dirname, "assets/bard");
+const cookieParser = require("cookie-parser");
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use(ignoreFavicon);
 app.use(swaggerUi.serve);
 app.use(cors());
@@ -152,10 +155,6 @@ app.get("/", function (req, res) {
 
 app.get("/chat", function (req, res) {
   res.sendFile(pathJoin(ROOT, "index.html"));
-});
-
-app.get("/manifest.json", function (req, res) {
-  res.sendFile(pathJoin(ROOT, "assets/manifest.json"));
 });
 
 app.get("/developer", (req, res) => {
