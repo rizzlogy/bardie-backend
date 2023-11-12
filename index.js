@@ -121,7 +121,9 @@ app.post("/api/onstage", async (req, res) => {
         status: 500,
         creator: "RizzyFuzz",
       });
-    res.status(200).json({ content: response.content, status: 200, creator: "RizzyFuzz" });
+    res
+      .status(200)
+      .json({ content: response.content, status: 200, creator: "RizzyFuzz" });
   } catch (error) {
     console.error(error);
     res.status(500).json({
