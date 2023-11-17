@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "Bardie API Documentation",
-    "description": "Unofficially API documentation for Bard Google AI",
+    "description": "Official BardieAI API",
     "contact": {
       "name": "RizzyFuzz",
       "url": "https://www.rizzy.eu.org/",
@@ -16,7 +16,7 @@
       "properties": {
         "ask": {
           "type": "string",
-          "description": "The question to be asked to Bard."
+          "description": "The question to be asked to Bardie."
         }
       },
       "example": {
@@ -48,10 +48,10 @@
     }
   },
   "paths": {
-    "/api/onstage": {
+    "/backend/conversation": {
       "post": {
         "summary": "Ask a question to Bard",
-        "description": "Endpoint for submitting a question to Bard.",
+        "description": "Endpoint for submitting a question to Bardie.",
         "parameters": [
           {
             "name": "Request Body",
