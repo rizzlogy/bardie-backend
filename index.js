@@ -122,6 +122,43 @@ app.post("/api/onstage", async (req, res) => {
   }
 });
 
+app.post("/api/onstage/image", async (req, res) => {
+  const { ask } = req.body;
+  const { images } = req.body;
+  if (!ask) {
+    return res.status(400).json({
+      content: "Bad Request: No Query Ask Provided",
+      status: 400,
+      creator: "RizzyFuzz",
+    });
+  }
+
+  const bard = new Bard();
+  try {
+    await bard.configure(
+      1,
+      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
+    );
+    const response = await bard.questionWithImage(ask, images);
+    if (!response.status)
+      res.status(500).json({
+        content: response.content,
+        status: 500,
+        creator: "RizzyFuzz",
+      });
+    res
+      .status(200)
+      .json({ content: response.content, status: 200, creator: "RizzyFuzz" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      content: "Internal Server Error!",
+      status: 500,
+      creator: "RizzyFuzz",
+    });
+  }
+});
+
 app.all("/api/onstage", (req, res, next) => {
   if (req.method !== "POST") {
     return res.status(405).json({
