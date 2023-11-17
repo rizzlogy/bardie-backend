@@ -100,7 +100,7 @@ app.post("/backend/conversation", async (req, res) => {
   try {
     await bard.configure(
       1,
-      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg",
+      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
     );
     const response = await bard.question(ask);
     if (!response.status)
