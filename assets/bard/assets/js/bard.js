@@ -12,7 +12,7 @@ let userText = null,
       ? "dark_mode"
       : "light_mode";
     const defaultText =
-      '<div class="default-text">\n<h1>Bardie</h1>\n<p>Start a conversation and explore the power of Google Bard.<br>Your chat history will be displayed here without login.</p>\n<br><a href="/developer">Click here to get API for Developers (Free)</a> </div>';
+      '<div class="default-text">\n<h1>Bardie</h1>\n<p>Start a conversation and explore the power of Bardie.<br>Your chat history will be displayed here without login.</p>\n<br><a href="/developer">Click here to get API for Developers (Free)</a> </div>';
     chatContainer.innerHTML = localStorage.getItem("all-chats") || defaultText;
     chatContainer.scrollTo(0, chatContainer.scrollHeight);
   },
@@ -23,7 +23,7 @@ let userText = null,
     return chatDiv;
   },
   getChatResponse = async (_0x524118) => {
-    const apiUrl = "/api/onstage";
+    const apiUrl = "/backend/conversation";
     const requestData = {
       method: "POST",
       headers: {
