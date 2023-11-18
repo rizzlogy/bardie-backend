@@ -88,66 +88,7 @@ app.use(
   }),
 );
 
-app.post("/backend/conversation", async (req, res) => {
-  const { ask } = req.body;
-  if (!ask) {
-    return res.status(400).json({
-      content: "Bad Request: No Query Ask Provided",
-      status: 400,
-      creator: "RizzyFuzz",
-    });
-  }
 
-  const bard = new Bard();
-  try {
-    await bard.configure(
-      1,
-      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
-    );
-    const response = await bard.question(ask);
-    if (!response.status)
-      res.status(500).json({
-        content: response.content,
-        status: 500,
-        creator: "RizzyFuzz",
-      });
-    res
-      .status(200)
-      .json({ content: response.content, status: 200, creator: "RizzyFuzz" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      content: "Internal Server Error!",
-      status: 500,
-      creator: "RizzyFuzz",
-    });
-  }
-});
-
-app.post("/backend/image", async (req, res) => {
-  try {
-    const { ask, image } = req.body;
-
-    // Fetch image and convert it to buffer
-    const imageResponse = await fetch(image);
-    const imageBuffer = await imageResponse.buffer();
-
-    // Instantiate Bard and ask the question
-    const bardInstance = new Bardie(
-      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
-    );
-    const response = await bardInstance.ask(ask, {
-      imageBuffer,
-      verbose: true,
-    });
-
-    // Send the JSON response back to the client
-    res.json(response);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-});
 
 app.all("/backend/conversation", (req, res, next) => {
   if (req.method !== "POST") {
@@ -164,7 +105,74 @@ app.get("/", function (req, res) {
   res.redirect("/chat");
 });
 
-app.get("/chat", function (req, res) {
+app.get("/chat", f// Improved error handling for /backend/conversation endpoint
+app.post('/backend/conversation', async (req, res) => {
+  try {
+    const { ask } = req.body;
+    if (!ask) {
+      return res.status(400).json({
+        content: 'Bad Request: No Query Ask Provided',
+        status: 400,
+        creator: 'RizzyFuzz',
+      });
+    }
+
+    const bard = new Bard();
+    await bard.configure(
+      1,
+      'dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.',
+    );
+
+    const response = await bard.question(ask);
+    if (!response.status) {
+      res.status(500).json({
+        content: response.content,
+        status: 500,
+        creator: 'RizzyFuzz',
+      });
+    } else {
+      res.status(200).json({
+        content: response.content,
+        status: 200,
+        creator: 'RizzyFuzz',
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      content: 'Internal Server Error!',
+      status: 500,
+      creator: 'RizzyFuzz',
+    });
+  }
+});
+
+// Improved error handling for /backend/image endpoint
+app.post('/backend/image', async (req, res) => {
+  try {
+    const { ask, image } = req.body;
+
+    // Fetch image and convert it to buffer
+    const imageResponse = await fetch(image);
+    const imageBuffer = await imageResponse.buffer();
+
+    // Instantiate Bard and ask the question
+    const bardInstance = new Bardie(
+      'dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.',
+    );
+    const response = await bardInstance.ask(ask, {
+      imageBuffer,
+      verbose: true,
+    });
+
+    // Send the JSON response back to the client
+    res.json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+unction (req, res) {
   res.sendFile(pathJoin(ROOT, "index.html"));
 });
 
