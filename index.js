@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
 const chalk = require("chalk");
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 const Bard = require("./lib/bard");
 const Bardie = require("./lib/bardie");
 const app = express();
@@ -124,24 +124,29 @@ app.post("/backend/conversation", async (req, res) => {
   }
 });
 
-app.post('/backend/conversation/image', async (req, res) => {
-    try {
-        const { ask, image } = req.body;
+app.post("/backend/conversation/image", async (req, res) => {
+  try {
+    const { ask, image } = req.body;
 
-        // Fetch image and convert it to buffer
-        const imageResponse = await fetch(image);
-        const imageBuffer = await imageResponse.buffer();
+    // Fetch image and convert it to buffer
+    const imageResponse = await fetch(image);
+    const imageBuffer = await imageResponse.buffer();
 
-        // Instantiate Bard and ask the question
-        const bardInstance = new Bardie("dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.");
-        const response = await bardInstance.ask(ask, { imageBuffer, verbose: true });
+    // Instantiate Bard and ask the question
+    const bardInstance = new Bardie(
+      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
+    );
+    const response = await bardInstance.ask(ask, {
+      imageBuffer,
+      verbose: true,
+    });
 
-        // Send the JSON response back to the client
-        res.json(response);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
+    // Send the JSON response back to the client
+    res.json(response);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 app.all("/backend/conversation", (req, res, next) => {
