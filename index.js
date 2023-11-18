@@ -5,7 +5,6 @@ const cors = require("cors");
 const logger = require("morgan");
 const chalk = require("chalk");
 const Bard = require("./lib/bard");
-const fetch = require("node-fetch");
 const app = express();
 const PORT = 8022 || 8888 || 1923;
 const speed = require("performance-now");
@@ -100,30 +99,6 @@ app.all(["/backend/conversation", "/api/onstage"], (req, res, next) => {
 
 app.get("/", function (req, res) {
   res.redirect("/chat");
-});
-
-app.post("/backend/image", async (req, res) => {
-  try {
-    const { ask, image } = req.body;
-
-    // Fetch image and convert it to buffer
-    const imageResponse = await fetch(image);
-    const imageBuffer = await imageResponse.buffer();
-
-    // Instantiate Bard and ask the question
-    const bardInstance = new require("./lib/bardie")(
-      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
-    );
-    const response = await bardInstance.ask(ask, {
-      imageBuffer,
-    });
-
-    // Send the JSON response back to the client
-    res.json(response);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
-  }
 });
 
 app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
