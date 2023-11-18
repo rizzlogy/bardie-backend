@@ -6,7 +6,6 @@ const logger = require("morgan");
 const chalk = require("chalk");
 const Bard = require("./lib/bard");
 const fetch = require("node-fetch");
-const { Bard: Bardie } = require("./lib/bardie");
 const app = express();
 const PORT = 8022 || 8888 || 1923;
 const speed = require("performance-now");
@@ -112,7 +111,7 @@ app.post("/backend/image", async (req, res) => {
     const imageBuffer = await imageResponse.buffer();
 
     // Instantiate Bard and ask the question
-    const bardInstance = new Bardie(
+    const bardInstance = new require("./lib/bardie")(
       "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
     );
     const response = await bardInstance.ask(ask, {
