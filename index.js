@@ -5,7 +5,7 @@ const cors = require("cors");
 const logger = require("morgan");
 const chalk = require("chalk");
 const Bard = require("./lib/bard");
-const fetch = require('node-fetch');
+const fetch = require("node-fetch");
 const { Bard: Bardie } = require("./lib/bardie");
 const app = express();
 const PORT = 8022 || 8888 || 1923;
@@ -103,7 +103,7 @@ app.get("/", function (req, res) {
   res.redirect("/chat");
 });
 
-app.post('/backend/image', async (req, res) => {
+app.post("/backend/image", async (req, res) => {
   try {
     const { ask, image } = req.body;
 
@@ -113,7 +113,7 @@ app.post('/backend/image', async (req, res) => {
 
     // Instantiate Bard and ask the question
     const bardInstance = new Bardie(
-      'dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.',
+      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
     );
     const response = await bardInstance.ask(ask, {
       imageBuffer,
@@ -124,10 +124,9 @@ app.post('/backend/image', async (req, res) => {
     res.json(response);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
-
 
 app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
   try {
