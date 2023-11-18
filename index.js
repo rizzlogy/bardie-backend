@@ -97,7 +97,6 @@ app.all(["/backend/conversation", "/api/onstage"], (req, res, next) => {
   next();
 });
 
-
 app.get("/", function (req, res) {
   res.redirect("/chat");
 });
