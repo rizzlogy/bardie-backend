@@ -88,7 +88,7 @@ app.use(
   }),
 );
 
-app.all("/backend/conversation", (req, res, next) => {
+app.all(["/backend/conversation"], ["/api/onstage"], (req, res, next) => {
   if (req.method !== "POST") {
     return res.status(405).json({
       content: "Method not allowed",
@@ -103,8 +103,7 @@ app.get("/", function (req, res) {
   res.redirect("/chat");
 });
 
-// Improved error handling for /backend/conversation endpoint
-app.post("/backend/conversation", async (req, res) => {
+app.post(["/backend/conversation"], ["/api/onstage"], async (req, res) => {
   try {
     const { ask } = req.body;
     if (!ask) {
@@ -142,32 +141,6 @@ app.post("/backend/conversation", async (req, res) => {
       status: 500,
       creator: "RizzyFuzz",
     });
-  }
-});
-
-// Improved error handling for /backend/image endpoint
-app.post("/backend/image", async (req, res) => {
-  try {
-    const { ask, image } = req.body;
-
-    // Fetch image and convert it to buffer
-    const imageResponse = await fetch(image);
-    const imageBuffer = await imageResponse.buffer();
-
-    // Instantiate Bard and ask the question
-    const bardInstance = new Bardie(
-      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
-    );
-    const response = await bardInstance.ask(ask, {
-      imageBuffer,
-      verbose: true,
-    });
-
-    // Send the JSON response back to the client
-    res.json(response);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
