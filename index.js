@@ -124,7 +124,7 @@ app.post("/backend/conversation", async (req, res) => {
   }
 });
 
-app.post("/backend/conversation/image", async (req, res) => {
+app.post("/backend/image", async (req, res) => {
   try {
     const { ask, image } = req.body;
 
