@@ -88,8 +88,6 @@ app.use(
   }),
 );
 
-
-
 app.all("/backend/conversation", (req, res, next) => {
   if (req.method !== "POST") {
     return res.status(405).json({
@@ -106,21 +104,21 @@ app.get("/", function (req, res) {
 });
 
 // Improved error handling for /backend/conversation endpoint
-app.post('/backend/conversation', async (req, res) => {
+app.post("/backend/conversation", async (req, res) => {
   try {
     const { ask } = req.body;
     if (!ask) {
       return res.status(400).json({
-        content: 'Bad Request: No Query Ask Provided',
+        content: "Bad Request: No Query Ask Provided",
         status: 400,
-        creator: 'RizzyFuzz',
+        creator: "RizzyFuzz",
       });
     }
 
     const bard = new Bard();
     await bard.configure(
       1,
-      'dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.',
+      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
     );
 
     const response = await bard.question(ask);
@@ -128,27 +126,27 @@ app.post('/backend/conversation', async (req, res) => {
       res.status(500).json({
         content: response.content,
         status: 500,
-        creator: 'RizzyFuzz',
+        creator: "RizzyFuzz",
       });
     } else {
       res.status(200).json({
         content: response.content,
         status: 200,
-        creator: 'RizzyFuzz',
+        creator: "RizzyFuzz",
       });
     }
   } catch (error) {
     console.error(error);
     res.status(500).json({
-      content: 'Internal Server Error!',
+      content: "Internal Server Error!",
       status: 500,
-      creator: 'RizzyFuzz',
+      creator: "RizzyFuzz",
     });
   }
 });
 
 // Improved error handling for /backend/image endpoint
-app.post('/backend/image', async (req, res) => {
+app.post("/backend/image", async (req, res) => {
   try {
     const { ask, image } = req.body;
 
@@ -158,7 +156,7 @@ app.post('/backend/image', async (req, res) => {
 
     // Instantiate Bard and ask the question
     const bardInstance = new Bardie(
-      'dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.',
+      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
     );
     const response = await bardInstance.ask(ask, {
       imageBuffer,
@@ -169,7 +167,7 @@ app.post('/backend/image', async (req, res) => {
     res.json(response);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
