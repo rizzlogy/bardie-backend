@@ -116,7 +116,6 @@ app.post("/backend/image", async (req, res) => {
     );
     const response = await bardInstance.ask(ask, {
       imageBuffer,
-      verbose: true,
     });
 
     // Send the JSON response back to the client
