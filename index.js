@@ -105,7 +105,7 @@ app.get("/", function (req, res) {
   res.redirect("/chat");
 });
 
-app.get("/chat", f// Improved error handling for /backend/conversation endpoint
+// Improved error handling for /backend/conversation endpoint
 app.post('/backend/conversation', async (req, res) => {
   try {
     const { ask } = req.body;
@@ -172,7 +172,8 @@ app.post('/backend/image', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-unction (req, res) {
+
+app.get("/chat", function (req, res) {
   res.sendFile(pathJoin(ROOT, "index.html"));
 });
 
