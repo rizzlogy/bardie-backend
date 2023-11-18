@@ -86,7 +86,7 @@ app.use(
   }),
 );
 
-app.all(["/backend/conversation"], ["/api/onstage"], (req, res, next) => {
+app.all(["/backend/conversation", "/api/onstage"], (req, res, next) => {
   if (req.method !== "POST") {
     return res.status(405).json({
       content: "Method not allowed",
@@ -97,11 +97,12 @@ app.all(["/backend/conversation"], ["/api/onstage"], (req, res, next) => {
   next();
 });
 
+
 app.get("/", function (req, res) {
   res.redirect("/chat");
 });
 
-app.post(["/backend/conversation"], ["/api/onstage"], async (req, res) => {
+app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
   try {
     const { ask } = req.body;
     if (!ask) {
