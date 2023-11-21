@@ -40,7 +40,7 @@ let userText = null,
         throw new Error("Error from AI model API");
       }
 
-      let { result:ai } = await apiResponse.json();
+      let { result: ai } = await apiResponse.json();
       const responseText = ai.contentWithHtml
         .replace(/\*\*/gi, "")
         .replace(/\*\s/gi, "");
