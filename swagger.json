@@ -55,11 +55,11 @@
         },
         "image": {
           "type": "string",
-          "description": "The url image to be asked to Bardie."
+          "description": "The URL image to be asked to Bardie."
         }
       },
       "example": {
-        "ask": "What this image?",
+        "ask": "What is in this image?",
         "image": "https://static9.depositphotos.com/1642482/1149/i/450/depositphotos_11490587-stock-photo-bananas.jpg"
       }
     },
@@ -85,7 +85,7 @@
         "status": 200,
         "creator": "RizzyFuzz"
       }
-    },
+    }
   },
   "paths": {
     "/backend/conversation": {
@@ -167,7 +167,7 @@
     "/backend/conversation/image": {
       "post": {
         "summary": "Ask a question to Bard",
-        "description": "Endpoint for submitting a question with image to Bardie.",
+        "description": "Endpoint for submitting a question with an image to Bardie.",
         "parameters": [
           {
             "name": "Request Body",
