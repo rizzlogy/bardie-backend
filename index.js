@@ -125,11 +125,7 @@ app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
         creator: "RizzyFuzz",
       });
     } else {
-      res.status(200).json({
-        content: response.content,
-        status: 200,
-        creator: "RizzyFuzz",
-      });
+     res.status(200).json(response)
     }
   } catch (error) {
     console.error(error);
@@ -165,11 +161,7 @@ app.post(["/backend/conversation/v2", "/api/onstage/v2"], async (req, res) => {
         creator: "RizzyFuzz",
       });
     } else {
-      res.status(200).json({
-        content: response.content,
-        status: 200,
-        creator: "RizzyFuzz",
-      });
+      res.status(200).json(response)
     }
   } catch (error) {
     console.error(error);
