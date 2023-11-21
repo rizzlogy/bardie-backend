@@ -41,7 +41,7 @@ let userText = null,
       }
 
       const jsonResponse = await apiResponse.json();
-      const responseText = jsonResponse.content
+      const responseText = jsonResponse.result.contentWithHtml
         .replace(/\*\*/gi, "")
         .replace(/\*\s/gi, "");
       responseParagraph.textContent = responseText;
