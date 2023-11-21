@@ -23,6 +23,29 @@
         "ask": "hi"
       }
     },
+    "Answer": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "The response content of the question request."
+        },
+        "status": {
+          "type": "integer",
+          "description": "HTTP status code.",
+          "example": 200
+        },
+        "creator": {
+          "type": "string",
+          "description": "Creator of the response."
+        }
+      },
+      "example": {
+        "content": "Hi there! How can I help you today?",
+        "status": 200,
+        "creator": "RizzyFuzz"
+      }
+    },
     "QuestionWithImage": {
       "type": "object",
       "properties": {
@@ -58,34 +81,11 @@
         }
       },
       "example": {
-        "content": "This a banana",
+        "content": "The image you sent shows a ripe banana on a white background.",
         "status": 200,
         "creator": "RizzyFuzz"
       }
     },
-    "Answer": {
-      "type": "object",
-      "properties": {
-        "content": {
-          "type": "string",
-          "description": "The response content of the question request."
-        },
-        "status": {
-          "type": "integer",
-          "description": "HTTP status code.",
-          "example": 200
-        },
-        "creator": {
-          "type": "string",
-          "description": "Creator of the response."
-        }
-      },
-      "example": {
-        "content": "Hi there! How can I help you today?",
-        "status": 200,
-        "creator": "RizzyFuzz"
-      }
-    }
   },
   "paths": {
     "/backend/conversation": {
