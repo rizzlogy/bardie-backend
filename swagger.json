@@ -23,7 +23,7 @@
         "ask": "hi"
       }
     },
-     "QuestionWithImage": {
+    "QuestionWithImage": {
       "type": "object",
       "properties": {
         "ask": {
@@ -36,8 +36,8 @@
         }
       },
       "example": {
-       "ask": "What this image?",
-       "image" "https://static9.depositphotos.com/1642482/1149/i/450/depositphotos_11490587-stock-photo-bananas.jpg"
+        "ask": "What this image?",
+        "image": "https://static9.depositphotos.com/1642482/1149/i/450/depositphotos_11490587-stock-photo-bananas.jpg"
       }
     },
     "AnswerWithImage": {
@@ -49,7 +49,7 @@
         },
         "status": {
           "type": "integer",
-          "dscription": "HTTP status code.",
+          "description": "HTTP status code.",
           "example": 200
         },
         "creator": {
@@ -63,7 +63,7 @@
         "creator": "RizzyFuzz"
       }
     },
-     "Answer": {
+    "Answer": {
       "type": "object",
       "properties": {
         "content": {
@@ -72,7 +72,7 @@
         },
         "status": {
           "type": "integer",
-          "dscription": "HTTP status code.",
+          "description": "HTTP status code.",
           "example": 200
         },
         "creator": {
