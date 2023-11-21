@@ -86,7 +86,7 @@ app.use(
   }),
 );
 
-app.all(["/backend/conversation", "/api/onstage"], (req, res, next) => {
+app.all(["/backend/conversation", "/api/onstage","/backend/conversation/image", "/api/onstage/image"], (req, res, next) => {
   if (req.method !== "POST") {
     return res.status(405).json({
       content: "Method not allowed",
@@ -137,7 +137,7 @@ app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
   }
 });
 
-app.post(["/backend/conversation/v2", "/api/onstage/v2"], async (req, res) => {
+app.post(["/backend/conversation/image", "/api/onstage/image"], async (req, res) => {
   try {
     const { ask, image } = req.body;
     if (!ask) {
