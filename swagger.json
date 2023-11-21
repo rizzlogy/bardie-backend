@@ -23,7 +23,47 @@
         "ask": "hi"
       }
     },
-    "Answer": {
+     "QuestionWithImage": {
+      "type": "object",
+      "properties": {
+        "ask": {
+          "type": "string",
+          "description": "The question to be asked to Bardie."
+        },
+        "image": {
+          "type": "string",
+          "description": "The url image to be asked to Bardie."
+        }
+      },
+      "example": {
+       "ask": "What this image?",
+       "image" "https://static9.depositphotos.com/1642482/1149/i/450/depositphotos_11490587-stock-photo-bananas.jpg"
+      }
+    },
+    "AnswerWithImage": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "The response content of the question request."
+        },
+        "status": {
+          "type": "integer",
+          "dscription": "HTTP status code.",
+          "example": 200
+        },
+        "creator": {
+          "type": "string",
+          "description": "Creator of the response."
+        }
+      },
+      "example": {
+        "content": "This a banana",
+        "status": 200,
+        "creator": "RizzyFuzz"
+      }
+    },
+     "Answer": {
       "type": "object",
       "properties": {
         "content": {
@@ -67,6 +107,82 @@
             "description": "OK",
             "schema": {
               "$ref": "#/definitions/Answer"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "Error message content."
+                },
+                "status": {
+                  "type": "integer",
+                  "description": "HTTP status code.",
+                  "example": 400
+                },
+                "creator": {
+                  "type": "string",
+                  "description": "Creator of the response."
+                }
+              },
+              "example": {
+                "content": "Bad Request: No Query Ask Provided",
+                "status": 400,
+                "creator": "RizzyFuzz"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "Error message content."
+                },
+                "status": {
+                  "type": "integer",
+                  "description": "HTTP status code.",
+                  "example": 500
+                },
+                "creator": {
+                  "type": "string",
+                  "description": "Creator of the response."
+                }
+              },
+              "example": {
+                "content": "Internal Server Error",
+                "status": 500,
+                "creator": "RizzyFuzz"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/backend/conversation/image": {
+      "post": {
+        "summary": "Ask a question to Bard",
+        "description": "Endpoint for submitting a question with image to Bardie.",
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/QuestionWithImage"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AnswerWithImage"
             }
           },
           "400": {
