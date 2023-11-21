@@ -11,7 +11,6 @@ const speed = require("performance-now");
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
 const cookieParser = require("cookie-parser");
-const { ignoreFavicon } = require("./lib/ignoreFavicon");
 const STATIC_ROOT = pathJoin(__dirname, "assets/bard/assets");
 const ROOT = pathJoin(__dirname, "assets/bard");
 const rateLimit = require("express-rate-limit");
@@ -23,7 +22,6 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use("/assets", express.static(STATIC_ROOT));
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(ignoreFavicon);
 app.use(swaggerUi.serve);
 app.use(cors());
 const limiter = rateLimit({
