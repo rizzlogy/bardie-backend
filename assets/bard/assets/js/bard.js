@@ -12,7 +12,7 @@ let userText = null,
       ? "dark_mode"
       : "light_mode";
     const defaultText =
-      '<div class="default-text">\n<h1>Bardie</h1>\n<p>Explore the power of Bardie<br>Your chat history will be displayed here</p>\n<br><a href="/developer">API for Developers</a> </div>';
+      '<div class="default-text">\n<h1>Bardie</h1>\n<p>Start a conversation and explore the power of AI.<br>Your chat history will be displayed here.</p>\n<br><a href="/developer">API for Developers</a> </div>';
     chatContainer.innerHTML = localStorage.getItem("all-chats") || defaultText;
     chatContainer.scrollTo(0, chatContainer.scrollHeight);
   },
