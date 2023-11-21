@@ -113,7 +113,9 @@ app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
     }
 
     const bard = new Bard();
-    await bard.configure("dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.");
+    await bard.configure(
+      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
+    );
 
     const response = await bard.question(ask);
     if (!response.status) {
@@ -151,7 +153,9 @@ app.post(["/backend/conversation/v2", "/api/onstage/v2"], async (req, res) => {
     }
 
     const bard = new Bard();
-    await bard.configure("dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.");
+    await bard.configure(
+      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
+    );
 
     const response = await bard.questionWithImage(ask, image);
     if (!response.status) {
