@@ -44,7 +44,7 @@ let userText = null,
       const responseText = ai.contentWithHtml
         .replace(/\*\*/gi, "")
         .replace(/\*\s/gi, "");
-      responseParagraph.textContent = responseText;
+      responseParagraph.innerHTML = responseText;
     } catch (error) {
       responseParagraph.classList.add("error");
       responseParagraph.textContent =
