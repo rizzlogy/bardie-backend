@@ -86,16 +86,24 @@ app.use(
   }),
 );
 
-app.all(["/backend/conversation", "/api/onstage","/backend/conversation/image", "/api/onstage/image"], (req, res, next) => {
-  if (req.method !== "POST") {
-    return res.status(405).json({
-      content: "Method not allowed",
-      status: 405,
-      creator: "RizzyFuzz",
-    });
-  }
-  next();
-});
+app.all(
+  [
+    "/backend/conversation",
+    "/api/onstage",
+    "/backend/conversation/image",
+    "/api/onstage/image",
+  ],
+  (req, res, next) => {
+    if (req.method !== "POST") {
+      return res.status(405).json({
+        content: "Method not allowed",
+        status: 405,
+        creator: "RizzyFuzz",
+      });
+    }
+    next();
+  },
+);
 
 app.get("/", function (req, res) {
   res.redirect("/chat");
@@ -137,41 +145,44 @@ app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
   }
 });
 
-app.post(["/backend/conversation/image", "/api/onstage/image"], async (req, res) => {
-  try {
-    const { ask, image } = req.body;
-    if (!ask) {
-      return res.status(400).json({
-        content: "Bad Request: No Query Ask Provided",
-        status: 400,
-        creator: "RizzyFuzz",
-      });
-    }
+app.post(
+  ["/backend/conversation/image", "/api/onstage/image"],
+  async (req, res) => {
+    try {
+      const { ask, image } = req.body;
+      if (!ask) {
+        return res.status(400).json({
+          content: "Bad Request: No Query Ask Provided",
+          status: 400,
+          creator: "RizzyFuzz",
+        });
+      }
 
-    const bard = new Bard();
-    await bard.configure(
-      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
-    );
+      const bard = new Bard();
+      await bard.configure(
+        "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
+      );
 
-    const response = await bard.questionWithImage(ask, image);
-    if (!response.status) {
+      const response = await bard.questionWithImage(ask, image);
+      if (!response.status) {
+        res.status(500).json({
+          content: response.content,
+          status: 500,
+          creator: "RizzyFuzz",
+        });
+      } else {
+        res.status(200).json(response);
+      }
+    } catch (error) {
+      console.error(error);
       res.status(500).json({
-        content: response.content,
+        content: "Internal Server Error!",
         status: 500,
         creator: "RizzyFuzz",
       });
-    } else {
-      res.status(200).json(response);
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      content: "Internal Server Error!",
-      status: 500,
-      creator: "RizzyFuzz",
-    });
-  }
-});
+  },
+);
 
 app.get("/chat", function (req, res) {
   res.sendFile(pathJoin(ROOT, "index.html"));
