@@ -166,7 +166,7 @@
     },
     "/backend/conversation/image": {
       "post": {
-        "summary": "Ask a question to Bard",
+        "summary": "Ask a question to Bard with image",
         "description": "Endpoint for submitting a question with an image to Bardie.",
         "parameters": [
           {
