@@ -1,4 +1,3 @@
-const { join: pathJoin } = require("path");
 const bodyParser = require("body-parser");
 const express = require("express");
 const cors = require("cors");
@@ -10,8 +9,6 @@ const PORT = 8022 || 8888 || 1923;
 const speed = require("performance-now");
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
-const cookieParser = require("cookie-parser");
-const rateLimit = require("express-rate-limit");
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
