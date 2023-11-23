@@ -103,10 +103,6 @@ app.all(
   },
 );
 
-app.get("/", function (req, res) {
-  res.redirect("/chat");
-});
-
 app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
   try {
     const { ask } = req.body;
@@ -155,6 +151,13 @@ app.post(
           creator: "RizzyFuzz",
         });
       }
+      if (!image) {
+        return res.status(400).json({
+          content: "Bad Request: No Image Provided",
+          status: 400,
+          creator: "RizzyFuzz",
+        });
+      }
 
       const bard = new Bard();
       await bard.configure(
@@ -182,7 +185,7 @@ app.post(
   },
 );
 
-app.get("/chat", function (req, res) {
+app.get("/", function (req, res) {
   res.sendFile(pathJoin(ROOT, "index.html"));
 });
 
