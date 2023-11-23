@@ -11,8 +11,6 @@ const speed = require("performance-now");
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
 const cookieParser = require("cookie-parser");
-const STATIC_ROOT = pathJoin(__dirname, "assets/bard/assets");
-const ROOT = pathJoin(__dirname, "assets/bard");
 const rateLimit = require("express-rate-limit");
 
 app.set("json spaces", 2);
@@ -20,16 +18,9 @@ app.set("trust proxy", true);
 app.enable("trust proxy");
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use("/assets", express.static(STATIC_ROOT));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(swaggerUi.serve);
 app.use(cors());
-const limiter = rateLimit({
-  windowMs: 1 * 60 * 1000,
-  max: 2000,
-  message: "Oops too many requests",
-});
-app.use(limiter);
 
 function formatBytes(bytes, decimals = 2) {
   if (bytes === 0) return "0 Bytes";
@@ -185,11 +176,7 @@ app.post(
   },
 );
 
-app.get("/", function (req, res) {
-  res.sendFile(pathJoin(ROOT, "index.html"));
-});
-
-app.get("/developer", (req, res) => {
+app.get("/", (req, res) => {
   swaggerDocument.host = req.get("host");
   swaggerDocument.schemes = ["https"];
   res.send(
