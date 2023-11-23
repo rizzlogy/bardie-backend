@@ -14,7 +14,6 @@ app.set("json spaces", 2);
 app.set("trust proxy", true);
 app.enable("trust proxy");
 app.use(bodyParser.json());
-app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(swaggerUi.serve);
 app.use(cors());
