@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Bardie API Documentation",
-    "description": "Official BardieAI API",
+    "title": "Bard API Documentation",
+    "description": "bard API Using Models LaMDA, Powered By Google Inc",
     "contact": {
       "name": "RizzyFuzz",
       "url": "https://www.rizzy.eu.org/",
@@ -16,7 +16,7 @@
       "properties": {
         "ask": {
           "type": "string",
-          "description": "The question to be asked to Bardie."
+          "description": "The question to be asked to Bard."
         }
       },
       "example": {
@@ -51,11 +51,11 @@
       "properties": {
         "ask": {
           "type": "string",
-          "description": "The question to be asked to Bardie."
+          "description": "The question to be asked to Bard."
         },
         "image": {
           "type": "string",
-          "description": "The URL image to be asked to Bardie."
+          "description": "The URL image to be asked to Bard."
         }
       },
       "example": {
@@ -91,7 +91,7 @@
     "/backend/conversation": {
       "post": {
         "summary": "Ask a question to Bard",
-        "description": "Endpoint for submitting a question to Bardie.",
+        "description": "Endpoint for submitting a question to Bard.",
         "parameters": [
           {
             "name": "Request Body",
@@ -167,7 +167,7 @@
     "/backend/conversation/image": {
       "post": {
         "summary": "Ask a question to Bard with image",
-        "description": "Endpoint for submitting a question with an image to Bardie.",
+        "description": "Endpoint for submitting a question with an image to Bard.",
         "parameters": [
           {
             "name": "Request Body",
