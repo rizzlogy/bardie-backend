@@ -10,6 +10,7 @@ const speed = require("performance-now");
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
 export const maxDuration = 300;
+export const dynamicParams = true
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
