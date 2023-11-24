@@ -9,6 +9,7 @@ const PORT = 8022 || 8888 || 1923;
 const speed = require("performance-now");
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
+export const maxDuration = 300;
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
