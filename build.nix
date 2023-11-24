@@ -4,7 +4,11 @@ with import <nixpkgs> { };
 stdenv.mkDerivation {
   name = "env";
   nativeBuildInputs = [ pkg-config ];
-  buildInputs = [ ];
+  buildInputs = [
+    libpng
+		libjpeg
+    libuuid
+  ];
 	
   shellHook = ''
     LD=$CC
