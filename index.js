@@ -10,6 +10,7 @@ const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
 const cookie =
   "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.";
+
 app.set("json spaces", 2);
 app.set("trust proxy", true);
 app.enable("trust proxy");
