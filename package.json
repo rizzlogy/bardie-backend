@@ -1,7 +1,7 @@
 {
-  "name": "bardie-ai",
+  "name": "bard-api",
   "version": "1.0.0",
-  "description": "Fullstack Clone Bard AI Google",
+  "description": "Function API Bard AI Google",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -16,8 +16,6 @@
   "dependencies": {
     "axios": "^0.27.2",
     "body-parser": "^1.20.1",
-    "performance-now": "*",
-    "node-os-utils": "*",
     "morgan": "*",
     "cors": "*",
     "swagger-ui-express": "github:rizzlogy/swagger-ui-express",
