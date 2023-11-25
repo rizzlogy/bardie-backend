@@ -8,7 +8,7 @@ const app = express();
 const PORT = 8022 || 8888 || 1923;
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
-
+const cookie = "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg."
 app.set("json spaces", 2);
 app.set("trust proxy", true);
 app.enable("trust proxy");
@@ -101,7 +101,7 @@ app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
     }
 
     const bard = new Bard();
-    await bard.configure(process.env.bardkey);
+    await bard.configure(cookie);
 
     const response = await bard.question(ask);
     if (!response.status) {
@@ -144,7 +144,7 @@ app.post(
       }
 
       const bard = new Bard();
-      await bard.configure(process.env.bardkey);
+      await bard.configure(cookie);
 
       const response = await bard.questionWithImage(ask, image);
       if (!response.status) {
