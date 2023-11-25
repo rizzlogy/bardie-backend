@@ -1,4 +1,3 @@
-process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0";
 const bodyParser = require("body-parser");
 const express = require("express");
 const cors = require("cors");
@@ -103,7 +102,7 @@ app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
 
     const bard = new Bard();
     await bard.configure(
-      "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
+      process.env.bardkey,
     );
 
     const response = await bard.question(ask);
@@ -148,7 +147,7 @@ app.post(
 
       const bard = new Bard();
       await bard.configure(
-        "dAi0zsDXmgvjqCJIOmO_AYdWcjsmONk2RzACTWebfE0AEoLC3mPu0BDPqgJRMk56rIGoCg.",
+        process.env.bardkey,
       );
 
       const response = await bard.questionWithImage(ask, image);
