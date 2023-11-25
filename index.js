@@ -101,9 +101,7 @@ app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
     }
 
     const bard = new Bard();
-    await bard.configure(
-      process.env.bardkey,
-    );
+    await bard.configure(process.env.bardkey);
 
     const response = await bard.question(ask);
     if (!response.status) {
@@ -146,9 +144,7 @@ app.post(
       }
 
       const bard = new Bard();
-      await bard.configure(
-        process.env.bardkey,
-      );
+      await bard.configure(process.env.bardkey);
 
       const response = await bard.questionWithImage(ask, image);
       if (!response.status) {
