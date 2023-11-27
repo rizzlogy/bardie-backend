@@ -2,7 +2,7 @@
 
 Powered by [Google Bard](https://bard.google.com/)
 
-Visit `bardie` on GitHub here: [BardAI](https://github.com/rizzlogy/BardAI)<br>
+Visit `bardie` on GitHub here: [BardAI](https://github.com/rizzlogy/bardie)<br>
 Visit `bardie` on NPM here: [Bardie](https://www.npmjs.com/package/bardie)
 
 ### RizzyFuzz ©Google Inc.
