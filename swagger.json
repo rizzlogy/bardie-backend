@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Bardie API Documentation",
+    "title": "Bardie API",
     "description": "Simple To Get JSON Response In Google Bard Server.",
     "contact": {
       "name": "RizzyFuzz",
