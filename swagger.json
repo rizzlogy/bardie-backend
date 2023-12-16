@@ -164,7 +164,6 @@
         }
       }
     },
-    "paths": {
     "/backend/conversation/you": {
       "post": {
         "summary": "Ask a question to You AI",
@@ -318,4 +317,5 @@
       }
     }
   }
-}
+              }
+            
