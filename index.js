@@ -128,35 +128,38 @@ app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
   }
 });
 
-app.post(["/backend/conversation/you", "/api/onstage/you"], async (req, res) => {
-  try {
-    const { ask } = req.body;
-    if (!ask) {
-      return res.status(400).json({
-        content: "Bad Request: No Query Ask Provided",
-        status: 400,
-        creator: "RizzyFuzz",
-      });
-    }
-    const response = await you(ask);
-    if (!response.status) {
+app.post(
+  ["/backend/conversation/you", "/api/onstage/you"],
+  async (req, res) => {
+    try {
+      const { ask } = req.body;
+      if (!ask) {
+        return res.status(400).json({
+          content: "Bad Request: No Query Ask Provided",
+          status: 400,
+          creator: "RizzyFuzz",
+        });
+      }
+      const response = await you(ask);
+      if (!response.status) {
+        res.status(500).json({
+          content: response.content,
+          status: 500,
+          creator: "RizzyFuzz",
+        });
+      } else {
+        res.status(200).json(response);
+      }
+    } catch (error) {
+      console.error(error);
       res.status(500).json({
-        content: response.content,
+        content: "Internal Server Error!",
         status: 500,
         creator: "RizzyFuzz",
       });
-    } else {
-      res.status(200).json(response);
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      content: "Internal Server Error!",
-      status: 500,
-      creator: "RizzyFuzz",
-    });
-  }
-});
+  },
+);
 
 app.post(
   ["/backend/conversation/image", "/api/onstage/image"],
