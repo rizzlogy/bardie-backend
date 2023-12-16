@@ -164,6 +164,83 @@
         }
       }
     },
+    "paths": {
+    "/backend/conversation/you": {
+      "post": {
+        "summary": "Ask a question to You AI",
+        "description": "Endpoint for submitting a question to You AI.",
+        "parameters": [
+          {
+            "name": "Request Body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Question"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Answer"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "Error message content."
+                },
+                "status": {
+                  "type": "integer",
+                  "description": "HTTP status code.",
+                  "example": 400
+                },
+                "creator": {
+                  "type": "string",
+                  "description": "Creator of the response."
+                }
+              },
+              "example": {
+                "content": "Bad Request: No Query Ask Provided",
+                "status": 400,
+                "creator": "RizzyFuzz"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "description": "Error message content."
+                },
+                "status": {
+                  "type": "integer",
+                  "description": "HTTP status code.",
+                  "example": 500
+                },
+                "creator": {
+                  "type": "string",
+                  "description": "Creator of the response."
+                }
+              },
+              "example": {
+                "content": "Internal Server Error",
+                "status": 500,
+                "creator": "RizzyFuzz"
+              }
+            }
+          }
+        }
+      }
+    },
     "/backend/conversation/image": {
       "post": {
         "summary": "Ask a question to Bard with image",
