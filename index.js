@@ -4,7 +4,6 @@ const cors = require("cors");
 const logger = require("morgan");
 const chalk = require("chalk");
 const Bard = require("./lib/bard");
-const you = require("./lib/you");
 const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
 const swaggerDocument = require("./swagger.json");
