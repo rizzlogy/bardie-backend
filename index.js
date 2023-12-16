@@ -4,6 +4,7 @@ const cors = require("cors");
 const logger = require("morgan");
 const chalk = require("chalk");
 const Bard = require("./lib/bard");
+const you = require("./lib/you");
 const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
 const swaggerDocument = require("./swagger.json");
@@ -76,6 +77,8 @@ app.all(
   [
     "/backend/conversation",
     "/api/onstage",
+    "/backend/conversation/you",
+    "/api/onstage/you",
     "/backend/conversation/image",
     "/api/onstage/image",
   ],
@@ -106,6 +109,36 @@ app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
     await bard.configure(cookie);
 
     const response = await bard.question(ask);
+    if (!response.status) {
+      res.status(500).json({
+        content: response.content,
+        status: 500,
+        creator: "RizzyFuzz",
+      });
+    } else {
+      res.status(200).json(response);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      content: "Internal Server Error!",
+      status: 500,
+      creator: "RizzyFuzz",
+    });
+  }
+});
+
+app.post(["/backend/conversation/you", "/api/onstage/you"], async (req, res) => {
+  try {
+    const { ask } = req.body;
+    if (!ask) {
+      return res.status(400).json({
+        content: "Bad Request: No Query Ask Provided",
+        status: 400,
+        creator: "RizzyFuzz",
+      });
+    }
+    const response = await you(ask);
     if (!response.status) {
       res.status(500).json({
         content: response.content,
