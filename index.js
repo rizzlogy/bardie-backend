@@ -151,21 +151,21 @@ app.post(
 
       const bard = new Bard();
       await bard.configure(cookie);
-      
-    const { status, content } = await bard.questionWithImage(ask, image);
-    if (!status) {
-      res.status(500).json({
-        content: response.content,
-        status: 500,
-        creator: "RizzyFuzz",
-      });
-    } else {
-      res.status(200).json({
-        content: content,
-        status: 200,
-        creator: "RizzyFuzz",
-      });
-    }
+
+      const { status, content } = await bard.questionWithImage(ask, image);
+      if (!status) {
+        res.status(500).json({
+          content: response.content,
+          status: 500,
+          creator: "RizzyFuzz",
+        });
+      } else {
+        res.status(200).json({
+          content: content,
+          status: 200,
+          creator: "RizzyFuzz",
+        });
+      }
     } catch (error) {
       console.error(error);
       res.status(500).json({
