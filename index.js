@@ -105,15 +105,19 @@ app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
     const bard = new Bard();
     await bard.configure(cookie);
 
-    const response = await bard.question(ask);
-    if (!response.status) {
+    const { status, content } = await bard.question(ask);
+    if (!status) {
       res.status(500).json({
         content: response.content,
         status: 500,
         creator: "RizzyFuzz",
       });
     } else {
-      res.status(200).json(response);
+      res.status(200).json({
+        content: content,
+        status: 200,
+        creator: "RizzyFuzz",
+      });
     }
   } catch (error) {
     console.error(error);
@@ -147,17 +151,21 @@ app.post(
 
       const bard = new Bard();
       await bard.configure(cookie);
-
-      const response = await bard.questionWithImage(ask, image);
-      if (!response.status) {
-        res.status(500).json({
-          content: response.content,
-          status: 500,
-          creator: "RizzyFuzz",
-        });
-      } else {
-        res.status(200).json(response);
-      }
+      
+    const { status, content } = await bard.questionWithImage(ask, image);
+    if (!status) {
+      res.status(500).json({
+        content: response.content,
+        status: 500,
+        creator: "RizzyFuzz",
+      });
+    } else {
+      res.status(200).json({
+        content: content,
+        status: 200,
+        creator: "RizzyFuzz",
+      });
+    }
     } catch (error) {
       console.error(error);
       res.status(500).json({
@@ -175,7 +183,7 @@ app.get("/", (req, res) => {
   res.send(
     swaggerUi.generateHTML(swaggerDocument, {
       customCss: `.swagger-ui .topbar .download-url-wrapper { display: none } 
-    .swagger-ui .topbar-wrapper img[alt="Bardie Web API"], .topbar-wrapper span {
+    .swagger-ui .topbar-wrapper img[alt="Bardie API"], .topbar-wrapper span {
       visibility: colapse;
     }
     .swagger-ui .topbar-wrapper img {
