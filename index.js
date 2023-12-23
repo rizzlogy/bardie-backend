@@ -108,7 +108,7 @@ app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
     const { status, content } = await bard.question(ask);
     if (!status) {
       res.status(500).json({
-        content: response.content,
+        content: content,
         status: 500,
         creator: "RizzyFuzz",
       });
@@ -155,7 +155,7 @@ app.post(
       const { status, content } = await bard.questionWithImage(ask, image);
       if (!status) {
         res.status(500).json({
-          content: response.content,
+          content: content,
           status: 500,
           creator: "RizzyFuzz",
         });
