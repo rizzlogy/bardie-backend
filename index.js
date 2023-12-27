@@ -14,7 +14,7 @@ const axios = require("axios");
 function getRandomCookie() {
   const cookies = [
     //"eggTf66gQSLG6GgZtDEt9ORyVyuJXYAvN70rQ6dje-CVeL7fK_nGriul0Ilm5_aicTMk3Q.",
-    "eggTf-BT-Nsi_wiy7e452Dr7gc1Cso1fd3pOz98GveDARacSANTc8m8BmFbThiQS_4pkBQ.",
+    "ewgTf9LkDIeNOT8hemXzFR9B7SrDmM4cGJLS0z9wXcrZEQ5muFEnXungVr2933XjvdNZ3Q.",
   ];
   const randomIndex = Math.floor(Math.random() * cookies.length);
   return cookies[randomIndex];
