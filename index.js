@@ -163,7 +163,6 @@ app.post(
       const randomCookie = getRandomCookie();
       await bard.configure(randomCookie);
 
-
       const { status, content } = await bard.questionWithImage(ask, image);
       if (!status) {
         res.status(500).json({
