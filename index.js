@@ -11,7 +11,7 @@ const swaggerUi = require("swagger-ui-express");
 const FormData = require("form-data");
 const { fromBuffer } = require("file-type");
 const axios = require("axios");
-let cookies =
+let cookie =
   "ewgTf9LkDIeNOT8hemXzFR9B7SrDmM4cGJLS0z9wXcrZEQ5muFEnXungVr2933XjvdNZ3Q.";
 
 app.set("json spaces", 2);
