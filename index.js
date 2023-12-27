@@ -8,15 +8,15 @@ const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
-const cookies = [
+
+async function getRandomCookie() {
+  const cookies = [
   "eghq8tYV92dGuAazf5V6mP2ZNiHynaNJgNxJ2Qw9MSZ3_ASv07EOJ5wrnM3szTBeeBMINw.",
   "eggTf66gQSLG6GgZtDEt9ORyVyuJXYAvN70rQ6dje-CVeL7fK_nGriul0Ilm5_aicTMk3Q.",
   "eQjeimZP8Ag_KvtMo2z4tDtlUSJpEycDTNXr2LpYmimZkb07xCIfCRQbvc2hSdB5qaL2Eg.",
   "eggTf-BT-Nsi_wiy7e452Dr7gc1Cso1fd3pOz98GveDARacSANTc8m8BmFbThiQS_4pkBQ.",
 ];
-
-function getRandomCookie() {
-  const randomIndex = Math.floor(Math.random() * cookies.length);
+  const randomIndex = await Math.floor(Math.random() * cookies.length);
   return cookies[randomIndex];
 }
 
@@ -112,7 +112,7 @@ app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
     }
 
     const bard = new Bard();
-    const randomCookie = getRandomCookie();
+    const randomCookie = await getRandomCookie();
     await bard.configure(randomCookie);
 
     const { status, content } = await bard.question(ask);
@@ -160,7 +160,7 @@ app.post(
       }
 
       const bard = new Bard();
-      const randomCookie = getRandomCookie();
+      const randomCookie = await getRandomCookie();
       await bard.configure(randomCookie);
 
       const { status, content } = await bard.questionWithImage(ask, image);
