@@ -12,7 +12,7 @@ const FormData = require("form-data");
 const { fromBuffer } = require("file-type");
 const axios = require("axios");
 let cookie =
-  "ewgTf9LkDIeNOT8hemXzFR9B7SrDmM4cGJLS0z9wXcrZEQ5muFEnXungVr2933XjvdNZ3Q.";
+  "eAi0zrzz4fetT0uePfSQOxHhJv9KTbQjMk0YDD1lnYVoUXulk0zqfoFWcVRyTw3RMVGy_Q.";
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
