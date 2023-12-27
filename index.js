@@ -8,8 +8,17 @@ const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
-const cookie =
-  "eAi0zrzz4fetT0uePfSQOxHhJv9KTbQjMk0YDD1lnYVoUXulk0zqfoFWcVRyTw3RMVGy_Q.";
+const cookies = [
+  "eghq8tYV92dGuAazf5V6mP2ZNiHynaNJgNxJ2Qw9MSZ3_ASv07EOJ5wrnM3szTBeeBMINw.",
+  "eggTf66gQSLG6GgZtDEt9ORyVyuJXYAvN70rQ6dje-CVeL7fK_nGriul0Ilm5_aicTMk3Q.",
+  "eQjeimZP8Ag_KvtMo2z4tDtlUSJpEycDTNXr2LpYmimZkb07xCIfCRQbvc2hSdB5qaL2Eg.",
+  "eggTf-BT-Nsi_wiy7e452Dr7gc1Cso1fd3pOz98GveDARacSANTc8m8BmFbThiQS_4pkBQ."
+];
+
+function getRandomCookie() {
+  const randomIndex = Math.floor(Math.random() * cookies.length);
+  return cookies[randomIndex];
+}
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
