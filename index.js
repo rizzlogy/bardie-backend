@@ -8,9 +8,9 @@ const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
-const FormData = require('form-data');
-const { fromBuffer } = require('file-type');
-const axios = require('axios');
+const FormData = require("form-data");
+const { fromBuffer } = require("file-type");
+const axios = require("axios");
 function getRandomCookie() {
   const cookies = [
     "eggTf66gQSLG6GgZtDEt9ORyVyuJXYAvN70rQ6dje-CVeL7fK_nGriul0Ilm5_aicTMk3Q.",
@@ -188,41 +188,41 @@ app.post(
   },
 );
 
-app.post('/upload', async (req, res) => {
-    try {
-        const { imageBuffer } = req.body; // Ambil buffer gambar dari body request
+app.post("/upload", async (req, res) => {
+  try {
+    const { imageBuffer } = req.body; // Ambil buffer gambar dari body request
 
-        // Proses pengunggahan gambar menggunakan fungsi yang telah dibuat sebelumnya
-        const imageUrl = await uploadImage(Buffer.from(imageBuffer, 'base64'));
+    // Proses pengunggahan gambar menggunakan fungsi yang telah dibuat sebelumnya
+    const imageUrl = await uploadImage(Buffer.from(imageBuffer, "base64"));
 
-        // Kirim URL gambar sebagai respons
-        res.status(200).json({ imageUrl });
-    } catch (error) {
-        // Tangani kesalahan jika terjadi
-        res.status(500).json({ error: error.message });
-    }
+    // Kirim URL gambar sebagai respons
+    res.status(200).json({ imageUrl });
+  } catch (error) {
+    // Tangani kesalahan jika terjadi
+    res.status(500).json({ error: error.message });
+  }
 });
 
 async function uploadImage(buffer) {
-    try {
-        let { ext } = await fromBuffer(buffer);
-        let form = new FormData();
-        form.append('file', buffer, 'tmp.' + ext);
+  try {
+    let { ext } = await fromBuffer(buffer);
+    let form = new FormData();
+    form.append("file", buffer, "tmp." + ext);
 
-        const response = await axios.post('https://telegra.ph/upload', form, {
-            headers: {
-                ...form.getHeaders()
-            }
-        });
+    const response = await axios.post("https://telegra.ph/upload", form, {
+      headers: {
+        ...form.getHeaders(),
+      },
+    });
 
-        if (response.data.error) {
-            throw new Error(response.data.error);
-        }
-
-        return 'https://telegra.ph' + response.data[0].src;
-    } catch (error) {
-        throw error;
+    if (response.data.error) {
+      throw new Error(response.data.error);
     }
+
+    return "https://telegra.ph" + response.data[0].src;
+  } catch (error) {
+    throw error;
+  }
 }
 
 app.get("/", (req, res) => {
