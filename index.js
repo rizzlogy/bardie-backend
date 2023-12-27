@@ -190,7 +190,7 @@ app.post(
 
 app.post("/upload", async (req, res) => {
   try {
-    const { imageBuffer } = req.body; 
+    const { imageBuffer } = req.body;
     const imageUrl = await uploadImage(Buffer.from(imageBuffer, "base64"));
     res.status(200).json({ imageUrl });
   } catch (error) {
