@@ -8,9 +8,6 @@ const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
-const FormData = require("form-data");
-const { fromBuffer } = require("file-type");
-const axios = require("axios");
 let cookie =
   "eAi0zrzz4fetT0uePfSQOxHhJv9KTbQjMk0YDD1lnYVoUXulk0zqfoFWcVRyTw3RMVGy_Q.";
 
@@ -179,38 +176,6 @@ app.post(
     }
   },
 );
-
-app.post("/upload", async (req, res) => {
-  try {
-    const { imageBuffer } = req.body;
-    const imageUrl = await uploadImage(Buffer.from(imageBuffer, "base64"));
-    res.status(200).json({ imageUrl });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
-
-async function uploadImage(buffer) {
-  try {
-    let { ext } = await fromBuffer(buffer);
-    let form = new FormData();
-    form.append("file", buffer, "tmp." + ext);
-
-    const response = await axios.post("https://telegra.ph/upload", form, {
-      headers: {
-        ...form.getHeaders(),
-      },
-    });
-
-    if (response.data.error) {
-      throw new Error(response.data.error);
-    }
-
-    return "https://telegra.ph" + response.data[0].src;
-  } catch (error) {
-    throw error;
-  }
-}
 
 app.get("/", (req, res) => {
   swaggerDocument.host = req.get("host");
