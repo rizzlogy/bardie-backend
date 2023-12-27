@@ -13,8 +13,8 @@ const { fromBuffer } = require("file-type");
 const axios = require("axios");
 function getRandomCookie() {
   const cookies = [
-    "eggTf66gQSLG6GgZtDEt9ORyVyuJXYAvN70rQ6dje-CVeL7fK_nGriul0Ilm5_aicTMk3Q.",
-    //"eggTf-BT-Nsi_wiy7e452Dr7gc1Cso1fd3pOz98GveDARacSANTc8m8BmFbThiQS_4pkBQ.",
+    //"eggTf66gQSLG6GgZtDEt9ORyVyuJXYAvN70rQ6dje-CVeL7fK_nGriul0Ilm5_aicTMk3Q.",
+    "eggTf-BT-Nsi_wiy7e452Dr7gc1Cso1fd3pOz98GveDARacSANTc8m8BmFbThiQS_4pkBQ.",
   ];
   const randomIndex = Math.floor(Math.random() * cookies.length);
   return cookies[randomIndex];
