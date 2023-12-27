@@ -190,15 +190,10 @@ app.post(
 
 app.post("/upload", async (req, res) => {
   try {
-    const { imageBuffer } = req.body; // Ambil buffer gambar dari body request
-
-    // Proses pengunggahan gambar menggunakan fungsi yang telah dibuat sebelumnya
+    const { imageBuffer } = req.body; 
     const imageUrl = await uploadImage(Buffer.from(imageBuffer, "base64"));
-
-    // Kirim URL gambar sebagai respons
     res.status(200).json({ imageUrl });
   } catch (error) {
-    // Tangani kesalahan jika terjadi
     res.status(500).json({ error: error.message });
   }
 });
