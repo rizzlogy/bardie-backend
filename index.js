@@ -54,7 +54,7 @@ function cookie() {
   const c = [ 
     "ewhq8ii-KnYXTRZm7QMOWiM8utFYUuDFNZYGXF3vPytz-iePyY4ESRgGasOwYpUVQRxBWw.",
     "ewjeiqhxUe54H_yj6LvFWnGDvS89zYP_ING72aMZa6GDBS53HWzmvncIWdrHqRnQr3DFqA.", 
-    "eAi0zrzz4fetT0uePfSQOxHhJv9KTbQjMk0YDD1lnYVoUXulk0zqfoFWcVRyTw3RMVGy_Q.";
+    "eAi0zrzz4fetT0uePfSQOxHhJv9KTbQjMk0YDD1lnYVoUXulk0zqfoFWcVRyTw3RMVGy_Q."
   ];
   const randomIndex = Math.floor(Math.random() * c.length);
   return c[randomIndex];
