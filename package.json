@@ -4,8 +4,8 @@
   "description": "Function API Bard AI Google",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "start": "node .",
+  "test": "echo \"Error: no test specified\" &amp;amp;amp;amp;&amp;amp;amp;amp; exit 1"
   },
   "keywords": [
     "bard-ai",
