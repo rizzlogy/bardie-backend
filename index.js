@@ -103,7 +103,7 @@ app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
     }
 
     const bard = new Bard();
-    await bard.configure(cookie());
+    await bard.configure(cookie);
 
     const { status, content } = await bard.question(ask);
     if (!status) {
@@ -150,7 +150,7 @@ app.post(
       }
 
       const bard = new Bard();
-      await bard.configure(cookie());
+      await bard.configure(cookie);
 
       const { status, content } = await bard.questionWithImage(ask, image);
       if (!status) {
