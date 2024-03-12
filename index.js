@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 8022 || 8888 || 1923;
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
 const cookie =
-  "g.a000hQi0zkrqPsaqoP-amdsFAMlJtBmsRke4iTufDvu15S6YqF5eP0UsV3_CDZjgzV7xRbdjWQACgYKAXUSAQASFQHGX2Mimup-xlg318ko9AF_6j58bRoVAUF8yKoxpxabJ_FYvnon0u9Avgfr0076";
+  "AKEyXzVGJpnwGaOiuEDIIRTpRS4rWTLf6H9pbjRv0OD_tVkfPplhj369ibvsb1KNFx3bI3BjSg";
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
