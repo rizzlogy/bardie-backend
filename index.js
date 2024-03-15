@@ -10,8 +10,7 @@ const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
 const cookie =
   "g.a000hQi0zjIi1fgqIpgaoljfn5_y7Tx6Oo8bsQIG6p8LEkemzWOL95It3bMTMbltt88osxhA2wACgYKARMSAQASFQHGX2MiIrnwzCB_Pj-3kECexTWIcBoVAUF8yKpCaYqW_B9DXVE9x14NTmA40076";
-const apikey = "AIzaSyCCoVnCp5CrgI05YqtqSAHXSqFzC9SBuGU"
-
+const apikey = "AIzaSyCCoVnCp5CrgI05YqtqSAHXSqFzC9SBuGU";
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
@@ -137,45 +136,47 @@ app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
   }
 });
 
-app.post(["/backend/conversation/gemini", "/api/onstage/gemini"], async (req, res) => {
-  try {
-    const { ask } = req.body;
-    if (!ask) {
-      return res.status(400).json({
-        content: "Bad Request: No Query Ask Provided",
-        status: 400,
-        creator: "RizzyFuzz",
-      });
-    }
+app.post(
+  ["/backend/conversation/gemini", "/api/onstage/gemini"],
+  async (req, res) => {
+    try {
+      const { ask } = req.body;
+      if (!ask) {
+        return res.status(400).json({
+          content: "Bad Request: No Query Ask Provided",
+          status: 400,
+          creator: "RizzyFuzz",
+        });
+      }
 
-    const bard = new Bard();
-    await bard.initilizeChat(apiKey);;
+      const bard = new Bard();
+      await bard.initilizeChat(apiKey);
 
-    const { status, content } = await bard.questionGemini(ask);
-    if (!status) {
+      const { status, content } = await bard.questionGemini(ask);
+      if (!status) {
+        res.status(500).json({
+          content: content,
+          status: 500,
+          creator: "RizzyFuzz",
+        });
+      } else {
+        res.status(200).json({
+          content: content,
+          status: 200,
+          creator: "RizzyFuzz",
+        });
+      }
+    } catch (error) {
+      console.error(error);
       res.status(500).json({
-        content: content,
+        content: "Internal Server Error!",
         status: 500,
         creator: "RizzyFuzz",
       });
-    } else {
-      res.status(200).json({
-        content: content,
-        status: 200,
-        creator: "RizzyFuzz",
-      });
     }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      content: "Internal Server Error!",
-      status: 500,
-      creator: "RizzyFuzz",
-    });
-  }
-});
+  },
+);
 
-    
 app.post(
   ["/backend/conversation/image", "/api/onstage/image"],
   async (req, res) => {
