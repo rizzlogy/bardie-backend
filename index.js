@@ -10,7 +10,7 @@ const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
 const cookie =
   "g.a000hQi0zjIi1fgqIpgaoljfn5_y7Tx6Oo8bsQIG6p8LEkemzWOL95It3bMTMbltt88osxhA2wACgYKARMSAQASFQHGX2MiIrnwzCB_Pj-3kECexTWIcBoVAUF8yKpCaYqW_B9DXVE9x14NTmA40076";
-const apikey = "AIzaSyCCoVnCp5CrgI05YqtqSAHXSqFzC9SBuGU";
+const apiKey = "AIzaSyCCoVnCp5CrgI05YqtqSAHXSqFzC9SBuGU";
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
