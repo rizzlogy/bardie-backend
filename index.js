@@ -22,7 +22,7 @@ app.use(
     origin: ["*"],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "application/json"],
-  })
+  }),
 );
 
 function formatBytes(bytes, decimals = 2) {
