@@ -1,4 +1,4 @@
-const bodyParser = require("body-parser");
+xconst bodyParser = require("body-parser");
 const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
@@ -17,7 +17,13 @@ app.enable("trust proxy");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(swaggerUi.serve);
-app.use(cors());
+app.use(
+  cors({
+    origin: ["*"],
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "application/json"],
+  })
+);
 
 function formatBytes(bytes, decimals = 2) {
   if (bytes === 0) return "0 Bytes";
