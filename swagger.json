@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "title": "Bardie API",
-    "description": "Simple To Get JSON Response In Google Bard Server.",
+    "description": "Simple To Get JSON Response In Google AI Server.",
     "contact": {
       "name": "RizzyFuzz",
       "url": "https://www.rizzy.eu.org/",
@@ -42,6 +42,41 @@
       },
       "example": {
         "content": "Hi there! How can I help you today?",
+        "status": 200,
+        "creator": "RizzyFuzz"
+      }
+    },
+    "QuestionGemini": {
+      "type": "object",
+      "properties": {
+        "ask": {
+          "type": "string",
+          "description": "The question to be asked to Gemini."
+        }
+      },
+      "example": {
+        "ask": "hi"
+      }
+    },
+    "AnswerGemini": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "The response content of the question request."
+        },
+        "status": {
+          "type": "integer",
+          "description": "HTTP status code.",
+          "example": 200
+        },
+        "creator": {
+          "type": "string",
+          "description": "Creator of the response."
+        }
+      },
+      "example": {
+        "content": "Hello there! How can I assist you today?",
         "status": 200,
         "creator": "RizzyFuzz"
       }
@@ -85,7 +120,47 @@
         "status": 200,
         "creator": "RizzyFuzz"
       }
-    }
+    },
+    "QuestionGeminiWithImage": {
+      "type": "object",
+      "properties": {
+        "ask": {
+          "type": "string",
+          "description": "The question to be asked to Gemini."
+        },
+        "image": {
+          "type": "string",
+          "description": "The URL image to be asked to Gemini."
+        }
+      },
+      "example": {
+        "ask": "What is in this image?",
+        "image": "https://static9.depositphotos.com/1642482/1149/i/450/depositphotos_11490587-stock-photo-bananas.jpg"
+      }
+    },
+    "AnswerGeminiWithImage": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "The response content of the question request."
+        },
+        "status": {
+          "type": "integer",
+          "description": "HTTP status code.",
+          "example": 200
+        },
+        "creator": {
+          "type": "string",
+          "description": "Creator of the response."
+        }
+      },
+      "example": {
+        "content": "This is a picture of a banana.",
+        "status": 200,
+        "creator": "RizzyFuzz"
+      }
+    },
   },
   "paths": {
     "/backend/conversation/gemini": {
