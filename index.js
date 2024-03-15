@@ -188,7 +188,7 @@ app.post(
           status: 400,
           creator: "RizzyFuzz",
         });
-      } 
+      }
       if (!image) {
         return res.status(400).json({
           content: "Bad Request: No Image Provided",
@@ -200,7 +200,10 @@ app.post(
       const bard = new Bard();
       await bard.configureGeminiImage(apiKey);
 
-      const { status, content } = await bard.questionGeminiWithImage(ask, image);
+      const { status, content } = await bard.questionGeminiWithImage(
+        ask,
+        image,
+      );
       if (!status) {
         res.status(500).json({
           content: content,
