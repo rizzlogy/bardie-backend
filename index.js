@@ -83,8 +83,12 @@ app.all(
   [
     "/backend/conversation",
     "/api/onstage",
+    "/backend/conversation/gemini",
+    "/api/onstage/gemini",
     "/backend/conversation/image",
     "/api/onstage/image",
+    "/backend/conversation/gemini/image",
+    "/api/onstage/gemini/image",
   ],
   (req, res, next) => {
     if (req.method !== "POST") {
@@ -155,13 +159,13 @@ app.post(
       const { status, content } = await bard.questionGemini(ask);
       if (!status) {
         res.status(500).json({
-          content: content,
+          content: content.trim(),
           status: 500,
           creator: "RizzyFuzz",
         });
       } else {
         res.status(200).json({
-          content: content,
+          content: content.trim(),
           status: 200,
           creator: "RizzyFuzz",
         });
@@ -206,13 +210,13 @@ app.post(
       );
       if (!status) {
         res.status(500).json({
-          content: content,
+          content: content.trim(),
           status: 500,
           creator: "RizzyFuzz",
         });
       } else {
         res.status(200).json({
-          content: content,
+          content: content.trim(),
           status: 200,
           creator: "RizzyFuzz",
         });
