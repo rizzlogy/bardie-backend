@@ -150,7 +150,7 @@ app.post(
       }
 
       const bard = new Bard();
-      await bard.initilizeChat(apiKey);
+      await bard.configureGemini(apiKey);
 
       const { status, content } = await bard.questionGemini(ask);
       if (!status) {
