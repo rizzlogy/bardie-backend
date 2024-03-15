@@ -178,6 +178,54 @@ app.post(
 );
 
 app.post(
+  ["/backend/conversation/gemini/image", "/api/onstage/gemini/image"],
+  async (req, res) => {
+    try {
+      const { ask, image } = req.body;
+      if (!ask) {
+        return res.status(400).json({
+          content: "Bad Request: No Query Ask Provided",
+          status: 400,
+          creator: "RizzyFuzz",
+        });
+      } 
+      if (!image) {
+        return res.status(400).json({
+          content: "Bad Request: No Image Provided",
+          status: 400,
+          creator: "RizzyFuzz",
+        });
+      }
+
+      const bard = new Bard();
+      await bard.configureGeminiImage(apiKey);
+
+      const { status, content } = await bard.questionGeminiWithImage(ask, image);
+      if (!status) {
+        res.status(500).json({
+          content: content,
+          status: 500,
+          creator: "RizzyFuzz",
+        });
+      } else {
+        res.status(200).json({
+          content: content,
+          status: 200,
+          creator: "RizzyFuzz",
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({
+        content: "Internal Server Error!",
+        status: 500,
+        creator: "RizzyFuzz",
+      });
+    }
+  },
+);
+
+app.post(
   ["/backend/conversation/image", "/api/onstage/image"],
   async (req, res) => {
     try {
