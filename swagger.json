@@ -173,7 +173,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/Question"
+              "$ref": "#/definitions/QuestionGemini"
             }
           }
         ],
@@ -181,7 +181,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Answer"
+              "$ref": "#/definitions/AnswerGemini"
             }
           },
           "400": {
@@ -403,7 +403,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/QuestionWithImage"
+              "$ref": "#/definitions/QuestionGeminiWithImage"
             }
           }
         ],
@@ -411,7 +411,7 @@
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/AnswerWithImage"
+              "$ref": "#/definitions/AnswerGeminiWithImage"
             }
           },
           "400": {
