@@ -20,12 +20,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(swaggerUi.serve);
 app.use(
   cors({
-    origin: ["*"],
+    origin: "*",
     methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type", "application/json"],
-    optionsSuccessStatus: 200,
+    allowedHeaders: ["Content-Type", "application/json"]
   }),
 );
+app.options('*', cors());
 
 function formatBytes(bytes, decimals = 2) {
   if (bytes === 0) return "0 Bytes";
