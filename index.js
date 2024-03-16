@@ -22,10 +22,10 @@ app.use(
   cors({
     origin: "*",
     methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type", "application/json"]
+    allowedHeaders: ["Content-Type", "application/json"],
   }),
 );
-app.options('*', cors());
+app.options("*", cors());
 
 function formatBytes(bytes, decimals = 2) {
   if (bytes === 0) return "0 Bytes";
