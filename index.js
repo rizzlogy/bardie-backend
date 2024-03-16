@@ -18,14 +18,7 @@ app.enable("trust proxy");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(swaggerUi.serve);
-app.use(
-  cors({
-    origin: "*",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type", "application/json"],
-  }),
-);
-app.options("*", cors());
+app.use(cors());
 
 function formatBytes(bytes, decimals = 2) {
   if (bytes === 0) return "0 Bytes";
