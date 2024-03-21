@@ -17,8 +17,6 @@ const {
   HarmBlockThreshold,
 } = require("@google/generative-ai");
 
-
-
 app.set("json spaces", 2);
 app.set("trust proxy", true);
 app.enable("trust proxy");
@@ -155,42 +153,42 @@ app.post(
       }
 
       const genAI = new GoogleGenerativeAI(apiKey);
-    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-    let chat = model.startChat({
-      generationConfig: {
-      temperature: 0.9,
-      topK: 1,
-      topP: 1,
-      maxOutputTokens: 10000,
-      },
-      safetySettings:[
-      {
-        category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-        threshold: HarmBlockThreshold.BLOCK_NONE,
-      },
-      {
-        category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-        threshold: HarmBlockThreshold.BLOCK_NONE,
-      },
-      {
-        category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-        threshold: HarmBlockThreshold.BLOCK_NONE,
-      },
-      {
-        category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-        threshold: HarmBlockThreshold.BLOCK_NONE,
-      },
-    ],
-    });
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      let chat = model.startChat({
+        generationConfig: {
+          temperature: 0.9,
+          topK: 1,
+          topP: 1,
+          maxOutputTokens: 10000,
+        },
+        safetySettings: [
+          {
+            category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+            threshold: HarmBlockThreshold.BLOCK_NONE,
+          },
+          {
+            category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+            threshold: HarmBlockThreshold.BLOCK_NONE,
+          },
+          {
+            category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+            threshold: HarmBlockThreshold.BLOCK_NONE,
+          },
+          {
+            category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+            threshold: HarmBlockThreshold.BLOCK_NONE,
+          },
+        ],
+      });
 
       const result = await chat.sendMessage(ask);
       const response = result?.response?.text();
-      
-        res.status(200).json({
-          content: response.trim(),
-          status: 200,
-          creator: "RizzyFuzz",
-        });
+
+      res.status(200).json({
+        content: response.trim(),
+        status: 200,
+        creator: "RizzyFuzz",
+      });
     } catch (error) {
       console.error(error);
       res.status(500).json({
