@@ -11,6 +11,13 @@ const swaggerUi = require("swagger-ui-express");
 const cookie =
   "g.a000hQi0zjIi1fgqIpgaoljfn5_y7Tx6Oo8bsQIG6p8LEkemzWOL95It3bMTMbltt88osxhA2wACgYKARMSAQASFQHGX2MiIrnwzCB_Pj-3kECexTWIcBoVAUF8yKpCaYqW_B9DXVE9x14NTmA40076";
 const apiKey = "AIzaSyCCoVnCp5CrgI05YqtqSAHXSqFzC9SBuGU";
+const {
+  GoogleGenerativeAI,
+  HarmCategory,
+  HarmBlockThreshold,
+} = require("@google/generative-ai");
+
+
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
@@ -147,23 +154,43 @@ app.post(
         });
       }
 
-      const bard = new Bard();
-      await bard.configureGemini(apiKey);
+      const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+    let chat = model.startChat({
+      generationConfig: {
+      temperature: 0.9,
+      topK: 1,
+      topP: 1,
+      maxOutputTokens: 10000,
+      },
+      safetySettings:[
+      {
+        category: HarmCategory.HARM_CATEGORY_HARASSMENT,
+        threshold: HarmBlockThreshold.BLOCK_NONE,
+      },
+      {
+        category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
+        threshold: HarmBlockThreshold.BLOCK_NONE,
+      },
+      {
+        category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
+        threshold: HarmBlockThreshold.BLOCK_NONE,
+      },
+      {
+        category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
+        threshold: HarmBlockThreshold.BLOCK_NONE,
+      },
+    ],
+    });
 
-      const { status, content } = await bard.questionGemini(ask);
-      if (!status) {
-        res.status(500).json({
-          content: content.trim(),
-          status: 500,
-          creator: "RizzyFuzz",
-        });
-      } else {
+      const result = await chat.sendMessage(ask);
+      const response = result?.response?.text();
+      
         res.status(200).json({
-          content: content.trim(),
+          content: response.trim(),
           status: 200,
           creator: "RizzyFuzz",
         });
-      }
     } catch (error) {
       console.error(error);
       res.status(500).json({
