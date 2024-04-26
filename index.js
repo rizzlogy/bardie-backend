@@ -1,5 +1,5 @@
 const bodyParser = require("body-parser");
-const kontol = require('dotenv');
+const kontol = require("dotenv");
 const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
