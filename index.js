@@ -1,4 +1,5 @@
 const bodyParser = require("body-parser");
+const kontol = require('dotenv');
 const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
@@ -8,9 +9,8 @@ const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
-const cookie =
-  "g.a000hQi0zjIi1fgqIpgaoljfn5_y7Tx6Oo8bsQIG6p8LEkemzWOL95It3bMTMbltt88osxhA2wACgYKARMSAQASFQHGX2MiIrnwzCB_Pj-3kECexTWIcBoVAUF8yKpCaYqW_B9DXVE9x14NTmA40076";
-const apiKey = "AIzaSyCCoVnCp5CrgI05YqtqSAHXSqFzC9SBuGU";
+const cookie = process.env.GEMINI_COOKIE;
+const apiKey = process.env.GEMINI_APIKEY;
 const {
   GoogleGenerativeAI,
   HarmCategory,
@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(swaggerUi.serve);
 app.use(cors());
+kontol.config();
 
 function formatBytes(bytes, decimals = 2) {
   if (bytes === 0) return "0 Bytes";
