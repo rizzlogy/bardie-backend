@@ -9,8 +9,11 @@ const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
-const cookie = process.env.GEMINI_COOKIE || "g.a000jAjeiph0-NZ_IP_TzDu5blKC1zTKfHGWuH66H1JvzLUjp4hhO1A3GcXuh_YTu9PHYZOoagACgYKAR0SAQASFQHGX2MiE-Tc_aUt27R2V3WxfeMHQhoVAUF8yKo457JSr2CnVeJXz_nLXF7O0076";
-const apiKey = process.env.GEMINI_APIKEY || "AIzaSyCCoVnCp5CrgI05YqtqSAHXSqFzC9SBuGU";
+const cookie =
+  process.env.GEMINI_COOKIE ||
+  "g.a000jAjeiph0-NZ_IP_TzDu5blKC1zTKfHGWuH66H1JvzLUjp4hhO1A3GcXuh_YTu9PHYZOoagACgYKAR0SAQASFQHGX2MiE-Tc_aUt27R2V3WxfeMHQhoVAUF8yKo457JSr2CnVeJXz_nLXF7O0076";
+const apiKey =
+  process.env.GEMINI_APIKEY || "AIzaSyCCoVnCp5CrgI05YqtqSAHXSqFzC9SBuGU";
 const {
   GoogleGenerativeAI,
   HarmCategory,
