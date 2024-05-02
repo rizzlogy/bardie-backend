@@ -1,5 +1,5 @@
 const bodyParser = require("body-parser");
-const kontol = require("dotenv");
+const config = require("./config.json");
 const express = require("express");
 const cors = require("cors");
 const logger = require("morgan");
@@ -9,16 +9,6 @@ const app = express();
 const PORT = process.env.PORT || 8022 || 8888 || 1923;
 const swaggerDocument = require("./swagger.json");
 const swaggerUi = require("swagger-ui-express");
-const cookie =
-  process.env.GEMINI_COOKIE ||
-  "g.a000jAjeiph0-NZ_IP_TzDu5blKC1zTKfHGWuH66H1JvzLUjp4hhO1A3GcXuh_YTu9PHYZOoagACgYKAR0SAQASFQHGX2MiE-Tc_aUt27R2V3WxfeMHQhoVAUF8yKo457JSr2CnVeJXz_nLXF7O0076";
-const apiKey =
-  process.env.GEMINI_APIKEY || "AIzaSyCCoVnCp5CrgI05YqtqSAHXSqFzC9SBuGU";
-const {
-  GoogleGenerativeAI,
-  HarmCategory,
-  HarmBlockThreshold,
-} = require("@google/generative-ai");
 
 app.set("json spaces", 2);
 app.set("trust proxy", true);
@@ -27,7 +17,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(swaggerUi.serve);
 app.use(cors());
-kontol.config();
 
 function formatBytes(bytes, decimals = 2) {
   if (bytes === 0) return "0 Bytes";
@@ -117,7 +106,7 @@ app.post(["/backend/conversation", "/api/onstage"], async (req, res) => {
     }
 
     const bard = new Bard();
-    await bard.configure(cookie);
+    await bard.configure(config.gemini_cookie);
 
     const { status, content } = await bard.question(ask);
     if (!status) {
@@ -156,43 +145,23 @@ app.post(
         });
       }
 
-      const genAI = new GoogleGenerativeAI(apiKey);
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-      let chat = model.startChat({
-        generationConfig: {
-          temperature: 0.9,
-          topK: 1,
-          topP: 1,
-          maxOutputTokens: 10000,
-        },
-        safetySettings: [
-          {
-            category: HarmCategory.HARM_CATEGORY_HARASSMENT,
-            threshold: HarmBlockThreshold.BLOCK_NONE,
-          },
-          {
-            category: HarmCategory.HARM_CATEGORY_HATE_SPEECH,
-            threshold: HarmBlockThreshold.BLOCK_NONE,
-          },
-          {
-            category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT,
-            threshold: HarmBlockThreshold.BLOCK_NONE,
-          },
-          {
-            category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT,
-            threshold: HarmBlockThreshold.BLOCK_NONE,
-          },
-        ],
-      });
+      const bard = new Bard();
+      await bard.configureGemini(config.gemini_apikey);
 
-      const result = await chat.sendMessage(ask);
-      const response = result?.response?.text();
-
-      res.status(200).json({
-        content: response.trim(),
-        status: 200,
-        creator: "RizzyFuzz",
-      });
+      const { status, content } = await bard.questionGemini(ask);
+      if (!status) {
+        res.status(500).json({
+          content: content.trim(),
+          status: 500,
+          creator: "RizzyFuzz",
+        });
+      } else {
+        res.status(200).json({
+          content: content.trim(),
+          status: 200,
+          creator: "RizzyFuzz",
+        });
+      }
     } catch (error) {
       console.error(error);
       res.status(500).json({
@@ -225,7 +194,7 @@ app.post(
       }
 
       const bard = new Bard();
-      await bard.configureGeminiImage(apiKey);
+      await bard.configureGeminiImage(config.gemini_apikey);
 
       const { status, content } = await bard.questionGeminiWithImage(
         ask,
@@ -276,7 +245,7 @@ app.post(
       }
 
       const bard = new Bard();
-      await bard.configure(cookie);
+      await bard.configure(config.gemini_cookie);
 
       const { status, content } = await bard.questionWithImage(ask, image);
       if (!status) {
