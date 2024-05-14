@@ -80,10 +80,10 @@ askQuestionWithImage();
 ## Note
 
 ### EN
-If there are bugs, please create [Issues](https://github.com/your-repo/issues).
+If there are bugs, please create [Issues](https://github.com/rizzlogy/bardie-backend/issues).
 
 ### ID
-Jika ada bug, silahkan buat [Issues](https://github.com/your-repo/issues).
+Jika ada bug, silahkan buat [Issues](https://github.com/rizzlogy/bardie-backend/issues).
 
 ## Additional Information
 
@@ -91,19 +91,18 @@ Jika ada bug, silahkan buat [Issues](https://github.com/your-repo/issues).
 
 ## Keywords
 
-- ai
-- chatbot
-- bot
-- robot
-- axios
-- completions
-- cli
-- bard
+- AI
+- Chatbot
+- Bot
+- Robot
+- Axios
+- Completions
+- Cli
+- Bard
 - BardAI
-- bard.google.com
-- bard.rizzy.eu.org
+- Bard.google.com
 
-For more information, check the [documentation](https://github.com/your-repo).
+For more information, check the [documentation](https://github.com/rizzlogy/bardie-backend).
 
 ## License
 
