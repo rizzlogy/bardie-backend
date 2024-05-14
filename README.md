@@ -115,6 +115,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ---
 
-> **Maintainer**: [RizzyFuzz](https://github.com/rizzyfuzz)
+> **Maintainer 1**: [RizzyFuzz](https://github.com/rizzyfuzz)
+> **Maintainer 2**: [FastURL](https://github.com/FastURL)
 
 Feel free to reach out for support or inquiries. Happy coding with Bardie!
